@@ -1,12 +1,19 @@
 package com.example.yummy.Network;
 
+import com.example.yummy.Model.Category;
+import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Model.RandomMeal;
 
 import java.util.List;
 
 public interface NetWorkCallBack {
 
-    public void onSuccessResult(List<RandomMeal> products) ;
-    public void onFaluireResult(String Messgae) ;
+    public void onRMealSuccessResult(List<RandomMeal> products) ;
+    public void onRMealFaluireResult(String message) ;
 
+    public void onCategoriesSucessResult(List<Category> categories ) ;
+    public void onCategoriesFailResult(String message) ;
+
+    public void onCountyMealSuccessResult(List<CountryMeal> countryMeals) ;
+    public void onCountyMealFailResult(String message) ;
 }
