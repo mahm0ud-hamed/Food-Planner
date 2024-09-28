@@ -1,6 +1,7 @@
 package com.example.yummy.RandoMealPresenter;
 
 import com.example.yummy.Model.Category;
+import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Model.RandomMeal;
 import com.example.yummy.Network.RemoteDataSource;
@@ -54,6 +55,11 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
+    public void getRemoteCountries() {
+        reposiory.getRemoteCountries(remoteSource ,this);
+    }
+
+    @Override
     public void onRMealSuccessResult(List<RandomMeal> meal) {
         homeView.displayRandoMeal(meal);
     }
@@ -98,5 +104,15 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     public void onCountyMealFailResult(String message) {
         // call home view fail message
         homeView.displayCounrtyMealError(message);
+    }
+
+    @Override
+    public void onCounrtySuccessResult(List<Counrty> counrties) {
+        searchView.viewSearchCounrty(counrties);
+    }
+
+    @Override
+    public void onCounrtyFailResult(String message) {
+
     }
 }

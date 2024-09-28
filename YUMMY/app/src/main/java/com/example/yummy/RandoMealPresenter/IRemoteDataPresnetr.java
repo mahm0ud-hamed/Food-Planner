@@ -5,5 +5,6 @@ public interface IRemoteDataPresnetr {
     public void getRemoteRandomMeal() ;
     public void getRemoteCatigoreis();
     public void getRemoteCountryMeals() ;
+    public void getRemoteCountries() ;
 
 }

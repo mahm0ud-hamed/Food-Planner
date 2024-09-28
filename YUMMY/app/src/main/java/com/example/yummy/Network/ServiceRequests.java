@@ -12,4 +12,7 @@ public interface ServiceRequests {
 
     @GET("filter.php?a=Canadian")
     Call<CounrtyMealResponse> getAllCountryMeals() ;
+
+    @GET("list.php?a=list")
+    Call<CountriesResponse> getAllCountries() ;
 }

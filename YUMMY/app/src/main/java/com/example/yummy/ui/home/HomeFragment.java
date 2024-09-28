@@ -62,14 +62,15 @@ public class HomeFragment extends Fragment implements IHomeView {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-
         recyclerViewCounrty.setLayoutManager(linearLayoutManager);
+
         homeCountryAdapter= new HomeCountryAdapter(getContext().getApplicationContext() , recyclerViewCounrty , new ArrayList<CountryMeal>()) ;
         recyclerViewCounrty.setAdapter(homeCountryAdapter);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext().getApplicationContext());
         linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
         recyclViewCateg.setLayoutManager(linearLayoutManager1);
+
         categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(),  recyclViewCateg,  new ArrayList<Category>()) ;
         recyclViewCateg.setAdapter(categoryAdapter);
 
@@ -128,5 +129,6 @@ public class HomeFragment extends Fragment implements IHomeView {
 
         logoImag = view.findViewById(R.id.imgLogo) ;
         logoImag.setImageResource(R.drawable.yummylogo);
+
     }
 }

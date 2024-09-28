@@ -107,4 +107,33 @@ public class RemoteDataSource {
     }
 
 
+    public void makeCounrtriesNetworkCall (NetWorkCallBack netWorkDelegate){
+        /*getting response from netwrok */
+        Call<CountriesResponse> call = serviceRequests.getAllCountries();
+        call.enqueue(new Callback<CountriesResponse>() {
+            @Override
+            public void onResponse(Call<CountriesResponse> call, Response<CountriesResponse> response) {
+                if (response.isSuccessful() ){
+                    /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
+                     * to handle the logic will applied on the returned data */
+                    System.out.println("respnse was got");
+                    netWorkDelegate.onCounrtySuccessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CountriesResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
+                /* using the reference of the interface which contain call backs , to print  */
+                netWorkDelegate.onCounrtyFailResult(t.getMessage());
+            }
+
+        });
+
+    }
+
+
 }

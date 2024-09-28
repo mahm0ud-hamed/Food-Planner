@@ -1,6 +1,7 @@
 package com.example.yummy.Network;
 
 import com.example.yummy.Model.Category;
+import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Model.RandomMeal;
 
@@ -16,4 +17,7 @@ public interface NetWorkCallBack {
 
     public void onCountyMealSuccessResult(List<CountryMeal> countryMeals) ;
     public void onCountyMealFailResult(String message) ;
+
+    public void onCounrtySuccessResult(List<Counrty> counrties) ;
+    public void onCounrtyFailResult(String message) ;
 }

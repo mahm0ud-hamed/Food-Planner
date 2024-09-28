@@ -8,5 +8,6 @@ public interface IRepository {
     public  void getRemoteRandomMeal(RemoteDataSource remoteSource, NetWorkCallBack netWorkCallBack) ;
     public  void getRemoteCategoreis(RemoteDataSource remoteSource, NetWorkCallBack netWorkCallBack) ;
     public void getRemoteCounrtyMeals(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack) ;
+    public void getRemoteCountries(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack) ;
 
 }

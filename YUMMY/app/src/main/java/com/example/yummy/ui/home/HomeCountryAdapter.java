@@ -49,6 +49,7 @@ public class HomeCountryAdapter extends RecyclerView.Adapter<HomeCountryAdapter.
     public void onBindViewHolder(@NonNull HomeCountryAdapter.ViewHolder viewHolder, int position) {
 
         viewHolder.txtCounrty.setText(countryMeals.get(position).getStrMeal());
+
         Glide.with(context).load(countryMeals.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(viewHolder.imgCounty);
@@ -56,7 +57,7 @@ public class HomeCountryAdapter extends RecyclerView.Adapter<HomeCountryAdapter.
     }
 
     public void setCounrtyMealsList(List<CountryMeal> countryMeals){
-        this.countryMeals =countryMeals;
+        this.countryMeals = countryMeals;
     }
 
     @Override
