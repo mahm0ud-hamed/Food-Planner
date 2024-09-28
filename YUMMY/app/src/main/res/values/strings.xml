@@ -4,4 +4,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="YUMMY" />
+    <string name="yummy">YUMMY</string>
+    <string name="categorySearch">Search By category</string>
+    <string name="countrySearch">Search BY Country</string>
+    <string name="searchIngrediant" />
+    <string name="searchIngrediants">Search By Ingrediant</string>
+    <string name="random_inspiration">Random Inspirtion</string>
+    <string name="category">More about food category</string>
+    <string name="acordin_country">According to country</string>
 </resources>

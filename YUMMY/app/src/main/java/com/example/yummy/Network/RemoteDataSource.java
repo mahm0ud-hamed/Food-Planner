@@ -1,6 +1,8 @@
 package com.example.yummy.Network;
 
 
+import android.util.Log;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,19 +80,24 @@ public class RemoteDataSource {
 
     public void makeCounrtyMealsNetworkCall (NetWorkCallBack netWorkDelegate){
         /*getting response from netwrok */
-        Call<CounrtyMealREsponse> call = serviceRequests.getAllCountyMeals();
-        call.enqueue(new Callback<CounrtyMealREsponse>() {
+        Call<CounrtyMealResponse> call = serviceRequests.getAllCountryMeals();
+        call.enqueue(new Callback<CounrtyMealResponse>() {
             @Override
-            public void onResponse(Call<CounrtyMealREsponse> call, Response<CounrtyMealREsponse> response) {
-                if (response.isSuccessful()) {
+            public void onResponse(Call<CounrtyMealResponse> call, Response<CounrtyMealResponse> response) {
+                if (response.isSuccessful() ){
                     /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
                      * to handle the logic will applied on the returned data */
-                    netWorkDelegate.onCountyMealSuccessResult(response.body().counrtyMeals);
+                    System.out.println("respnse was got");
+                    netWorkDelegate.onCountyMealSuccessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
                 }
             }
 
             @Override
-            public void onFailure(Call<CounrtyMealREsponse> call, Throwable t) {
+            public void onFailure(Call<CounrtyMealResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
                 /* using the reference of the interface which contain call backs , to print  */
                 netWorkDelegate.onCountyMealFailResult(t.getMessage());
             }

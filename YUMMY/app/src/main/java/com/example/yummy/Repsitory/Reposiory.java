@@ -5,6 +5,8 @@ import com.example.yummy.Network.NetWorkCallBack;
 
 public class Reposiory implements IRepository {
 
+
+        // constructor nee to take remota and locsa data source
     @Override
     public void getRemoteRandomMeal(RemoteDataSource remoteSource, NetWorkCallBack netWorkCallBack) {
         remoteSource.makeMealNetworkCall(netWorkCallBack);

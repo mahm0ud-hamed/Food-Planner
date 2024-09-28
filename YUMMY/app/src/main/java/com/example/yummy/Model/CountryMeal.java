@@ -1,28 +1,42 @@
 package com.example.yummy.Model;
 
 public class CountryMeal {
-    public String strCountryMeal;
-    public String strCountyMealThumb;
+    public String strMeal;
+    public String strMealThumb;
+    public String idMeal;
 
-    public String getIdCounrtyMeal() {
-        return idCounrtyMeal;
+
+    public String getIdMeal() {
+        return idMeal;
     }
 
-    public String getStrCountyMealThumb() {
-        return strCountyMealThumb;
+    public void setStrMeal(String strMeal) {
+        this.strMeal = strMeal;
     }
 
-    public String getStrCountryMeal() {
-        return strCountryMeal;
+    public void setStrMealThumb(String strMealThumb) {
+        this.strMealThumb = strMealThumb;
+    }
+
+    public void setIdMeal(String idMeal) {
+        this.idMeal = idMeal;
+    }
+
+    public String getStrMealThumb() {
+        return strMealThumb;
+    }
+
+    public String getStrMeal() {
+        return strMeal;
     }
 
     public CountryMeal(String strCountryMeal, String strCountyMealThumb, String idCounrtyMeal) {
-        this.strCountryMeal = strCountryMeal;
-        this.strCountyMealThumb = strCountyMealThumb;
-        this.idCounrtyMeal = idCounrtyMeal;
+        this.strMeal = strCountryMeal;
+        this.strMealThumb = strCountyMealThumb;
+        this.idMeal = idCounrtyMeal;
     }
 
-    public String idCounrtyMeal ;
+
 
 }
 

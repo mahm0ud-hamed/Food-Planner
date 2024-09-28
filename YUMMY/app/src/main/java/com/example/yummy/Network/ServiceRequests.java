@@ -10,8 +10,6 @@ public interface ServiceRequests {
     @GET("categories.php")
     Call<CategoryResponse> getAllCategries() ;
 
-    @GET("filter.php?a=egyptian")
-    Call<CounrtyMealREsponse> getAllCountyMeals() ;
-
-
+    @GET("filter.php?a=Canadian")
+    Call<CounrtyMealResponse> getAllCountryMeals() ;
 }
