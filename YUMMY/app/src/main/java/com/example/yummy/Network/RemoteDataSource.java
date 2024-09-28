@@ -135,5 +135,61 @@ public class RemoteDataSource {
 
     }
 
+    public void makeCounrtriesMealFilterNetworkCall (NetWorkCallBack netWorkDelegate , String counrty ){
+        /*getting response from netwrok */
+        Call<CounrtyMealResponse> call = serviceRequests.filterMealsByCounrty(counrty);
+        call.enqueue(new Callback<CounrtyMealResponse>() {
+            @Override
+            public void onResponse(Call<CounrtyMealResponse> call, Response<CounrtyMealResponse> response) {
+                if (response.isSuccessful() ){
+                    /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
+                     * to handle the logic will applied on the returned data */
+                    System.out.println("respnse was got");
+                    netWorkDelegate.onCountryMealFilterSucssessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CounrtyMealResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
+                /* using the reference of the interface which contain call backs , to print  */
+                netWorkDelegate.onCountryMealFilterFailResult(t.getMessage());
+            }
+
+        });
+
+    }
+
+    public void makeCategoriesMealFilterNetworkCall (NetWorkCallBack netWorkDelegate , String categoty ){
+        /*getting response from netwrok */
+        Call<CounrtyMealResponse> call = serviceRequests.filterMealsByCategory(categoty);
+        call.enqueue(new Callback<CounrtyMealResponse>() {
+            @Override
+            public void onResponse(Call<CounrtyMealResponse> call, Response<CounrtyMealResponse> response) {
+                if (response.isSuccessful() ){
+                    /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
+                     * to handle the logic will applied on the returned data */
+                    System.out.println("respnse was got");
+                    netWorkDelegate.oncategoryMealFilterSucssessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CounrtyMealResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
+                /* using the reference of the interface which contain call backs , to print  */
+                netWorkDelegate.oncategoryMealFilterFailResult(t.getMessage());
+            }
+
+        });
+
+    }
+
 
 }

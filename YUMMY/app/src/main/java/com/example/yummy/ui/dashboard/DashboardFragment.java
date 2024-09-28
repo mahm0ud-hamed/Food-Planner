@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
+import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Network.NetWorkCallBack;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
@@ -34,6 +37,10 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     RecyclerView recyclerViewSrchCounrty ;
     SearchCounrtyAdapter searchCounrtyAdapter ;
     OnClickListner onClickListner ;
+    RecyclerView recycViewMealOnClick ;
+    LinearLayout  LinearSearchlayout ;
+    FilterMealAdapter  filterMealAdapter ;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
@@ -48,13 +55,14 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         view.findViewById(R.id.srchBar) ;
         recyclerViewSrchCateg  = view.findViewById(R.id.srchcCtegRcycView);
         recyclerViewSrchCounrty = view.findViewById(R.id.srchcCountyRcycView) ;
-
+        recycViewMealOnClick = view.findViewById(R.id.recycViewMealOnClick) ;
+        LinearSearchlayout= view.findViewById(R.id.LinearSearchlayout) ;
         remoteDataPresenter = new RemoteDataPresenter(RemoteDataSource.getInstance(), this );
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewSrchCateg.setLayoutManager(linearLayoutManager);
-        searchAdapter = new SearchAdapter(getContext().getApplicationContext(),  recyclerViewSrchCateg,  new ArrayList<Category>()) ;
+        searchAdapter = new SearchAdapter(getContext().getApplicationContext(),  recyclerViewSrchCateg,  new ArrayList<Category>() , this) ;
         recyclerViewSrchCateg.setAdapter(searchAdapter);
 
         LinearLayoutManager linearLayoutManagerCountry = new LinearLayoutManager(getContext().getApplicationContext());
@@ -88,7 +96,58 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     }
 
     @Override
+    public void viewCountryMealsByFilter(List<CountryMeal> filterCountryMeals) {
+        // pas to adapter when caeated
+        filterMealAdapter.setFilterMealList(filterCountryMeals);
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void viewCategoryMealsByFilter(List<CountryMeal> filterCategoryMeals) {
+        filterMealAdapter.setFilterMealList(filterCategoryMeals);
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onCountryClick(Counrty counrty) {
+        HideSearchFragmentEelement() ;
+        binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recycViewMealOnClick.setLayoutManager(verticalLayoutManager);
+
+        // Ensure that you have the correct data for the new adapter
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+        recycViewMealOnClick.setAdapter(filterMealAdapter);
+
+        remoteDataPresenter.getRemoteFilterCounrtyMeal(counrty.getStrArea());
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCatgeoryClick(String catgeorName) {
+
+        HideSearchFragmentEelement() ;
+        binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recycViewMealOnClick.setLayoutManager(verticalLayoutManager);
+
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+        recycViewMealOnClick.setAdapter(filterMealAdapter);
+
+        remoteDataPresenter.getRemoteFilterCategoryMeal(catgeorName);
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+    private void HideSearchFragmentEelement(){
         binding.srchBar.setVisibility(View.INVISIBLE);
+        binding.srchcCountyRcycView.setVisibility(View.INVISIBLE);
+        binding.srchcCtegRcycView.setVisibility(View.INVISIBLE);
+        binding.textView.setVisibility(View.INVISIBLE);
+        binding.textView2.setVisibility(View.INVISIBLE);
+        binding.textView3.setVisibility(View.INVISIBLE);
+        binding.srchcInrdiRcycView.setVisibility(View.INVISIBLE);
+
     }
 }

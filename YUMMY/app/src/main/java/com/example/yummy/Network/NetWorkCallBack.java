@@ -20,4 +20,12 @@ public interface NetWorkCallBack {
 
     public void onCounrtySuccessResult(List<Counrty> counrties) ;
     public void onCounrtyFailResult(String message) ;
+
+    public  void onCountryMealFilterSucssessResult(List<CountryMeal> countryMeals) ;
+    public  void onCountryMealFilterFailResult(String message ) ;
+
+
+    public  void oncategoryMealFilterFailResult(String message ) ;
+    public  void oncategoryMealFilterSucssessResult(List<CountryMeal> countryMeals) ;
+
 }

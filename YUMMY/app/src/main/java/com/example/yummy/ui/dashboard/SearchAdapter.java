@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Category;
+import com.example.yummy.Model.Counrty;
+import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.R;
 
 import java.util.List;
@@ -20,12 +22,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     List<Category> categories;
     Context context ;
-
-    public SearchAdapter(Context context , View categoryCard , List<Category> categories){
+    OnClickListner onClickListner ;
+    public SearchAdapter(Context context , View categoryCard , List<Category> categories , OnClickListner onClickListner){
         this.categories = categories ;
         this.context = context ;
-
+        this.onClickListner = onClickListner;
     }
+
     public  class ViewHolder extends RecyclerView.ViewHolder{
         ImageView categoryImage ;
         ImageView categoryImage2;
@@ -59,6 +62,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage2);
         }
+
+        holder.categoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListner.onCatgeoryClick(categories.get(position).getStrCategory());
+            }
+        });
     }
 
     public void setSearchCategoriesList(List<Category > categories ){

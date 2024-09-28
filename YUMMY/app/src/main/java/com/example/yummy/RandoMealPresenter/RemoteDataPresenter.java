@@ -60,6 +60,16 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
+    public void getRemoteFilterCounrtyMeal(String counrty) {
+        reposiory.getRemoteCounrtyMealsFilter(remoteSource , this , counrty);
+    }
+
+    @Override
+    public void getRemoteFilterCategoryMeal(String category) {
+        reposiory.getRemoteCategoryMealsFilter(remoteSource , this , category);
+    }
+
+    @Override
     public void onRMealSuccessResult(List<RandomMeal> meal) {
         homeView.displayRandoMeal(meal);
     }
@@ -113,6 +123,27 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void onCounrtyFailResult(String message) {
+
+    }
+
+    @Override
+    public void onCountryMealFilterSucssessResult(List<CountryMeal> countryMeals) {
+        searchView.viewCountryMealsByFilter(countryMeals);
+    }
+
+    @Override
+    public void onCountryMealFilterFailResult(String message) {
+
+    }
+
+    @Override
+    public void oncategoryMealFilterFailResult(String message) {
+        //
+    }
+
+    @Override
+    public void oncategoryMealFilterSucssessResult(List<CountryMeal> categotymeal) {
+        searchView.viewCategoryMealsByFilter(categotymeal);
 
     }
 }

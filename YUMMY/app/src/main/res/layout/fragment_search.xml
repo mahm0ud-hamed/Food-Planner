@@ -7,13 +7,15 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <ScrollView
+        android:id="@+id/scrollViewSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/LinearSearchlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <SearchView
                 android:id="@+id/srchBar"
