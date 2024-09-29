@@ -37,9 +37,16 @@ public class Reposiory implements IRepository {
         remoteDataSource.makeCategoriesMealFilterNetworkCall(netWorkCallBack , category);
     }
 
-
-    public void getRemoteCategoruMealsFilter(RemoteDataSource remoteDataSource, NetWorkCallBack netWorkCallBack, String category){
-        remoteDataSource.makeCategoriesMealFilterNetworkCall(netWorkCallBack , category);
+    @Override
+    public void getRemoteIngredientMealsFilter(RemoteDataSource remoteDataSource, NetWorkCallBack netWorkCallBack, String ingredient ) {
+        remoteDataSource.makeIngredientMealFilterNetworkCall( netWorkCallBack , ingredient);
     }
+
+    @Override
+    public void getRemoteIngredient(RemoteDataSource remoteDataSource, NetWorkCallBack netWorkCallBack) {
+        remoteDataSource.makeIngredientNetworkCall(netWorkCallBack);
+    }
+
+
 
 }

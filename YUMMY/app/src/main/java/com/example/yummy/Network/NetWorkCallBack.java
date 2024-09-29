@@ -3,6 +3,7 @@ package com.example.yummy.Network;
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Model.RandomMeal;
 
 import java.util.List;
@@ -27,5 +28,12 @@ public interface NetWorkCallBack {
 
     public  void oncategoryMealFilterFailResult(String message ) ;
     public  void oncategoryMealFilterSucssessResult(List<CountryMeal> countryMeals) ;
+
+    public  void onIngerdeintFilterFailResult(String message ) ;
+    public  void onIngerdientFilterSucssessResult(List<CountryMeal> countryMeals) ;
+
+
+    public void onIngredientSuccessResult(List<Ingredient> ingredients) ;
+    public void onIngredientFailResult (String message);
 
 }

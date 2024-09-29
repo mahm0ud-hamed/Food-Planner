@@ -11,6 +11,8 @@ public interface IRepository {
     public void getRemoteCountries(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack) ;
     public  void getRemoteCounrtyMealsFilter(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack ,String country ) ;
     public  void getRemoteCategoryMealsFilter(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack ,String category ) ;
+    public  void getRemoteIngredientMealsFilter(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack ,String category ) ;
+    public  void getRemoteIngredient(RemoteDataSource remoteDataSource , NetWorkCallBack netWorkCallBack) ;
 
 
 

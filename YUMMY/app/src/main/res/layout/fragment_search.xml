@@ -3,19 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <ScrollView
         android:id="@+id/scrollViewSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:id="@+id/LinearSearchlayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="70dp">
 
             <SearchView
                 android:id="@+id/srchBar"
@@ -35,8 +42,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/srchcCtegRcycView"
-                android:layout_width="match_parent"
-                android:layout_height="108dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="36dp" />
 
             <TextView
@@ -51,7 +58,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/srchcCountyRcycView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp" />
 
@@ -66,16 +73,16 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/srchcInrdiRcycView"
-                android:layout_width="409dp"
-                android:layout_height="108dp"
+                android:id="@+id/srchcIngrdRcycView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="36dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewMealOnClick"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 

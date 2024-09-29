@@ -1,8 +1,11 @@
 package com.example.yummy.RandoMealPresenter;
 
+import android.widget.SearchView;
+
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Model.RandomMeal;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.Network.NetWorkCallBack;
@@ -68,6 +71,18 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     public void getRemoteFilterCategoryMeal(String category) {
         reposiory.getRemoteCategoryMealsFilter(remoteSource , this , category);
     }
+
+    @Override
+    public void getRemoteFilterIngredientMeal(String ingredient) {
+        reposiory.getRemoteIngredientMealsFilter(remoteSource , this , ingredient);
+    }
+
+    @Override
+    public void getRemoteIngredient() {
+     reposiory.getRemoteIngredient(remoteSource , this);
+    }
+
+    /******************************************** RESULT ************************************/
 
     @Override
     public void onRMealSuccessResult(List<RandomMeal> meal) {
@@ -138,12 +153,32 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void oncategoryMealFilterFailResult(String message) {
-        //
+
     }
 
     @Override
     public void oncategoryMealFilterSucssessResult(List<CountryMeal> categotymeal) {
         searchView.viewCategoryMealsByFilter(categotymeal);
+
+    }
+
+    @Override
+    public void onIngerdeintFilterFailResult(String message) {
+
+    }
+
+    @Override
+    public void onIngerdientFilterSucssessResult(List<CountryMeal> ingerdients) {
+        searchView.viewIngredientMealsByFilter(ingerdients);
+    }
+
+    @Override
+    public void onIngredientSuccessResult(List<Ingredient> ingredients) {
+        searchView.viewIngredient(ingredients);
+    }
+
+    @Override
+    public void onIngredientFailResult(String message) {
 
     }
 }

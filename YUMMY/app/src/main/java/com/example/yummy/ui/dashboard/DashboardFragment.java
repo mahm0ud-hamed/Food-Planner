@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Network.NetWorkCallBack;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
@@ -40,6 +41,8 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     RecyclerView recycViewMealOnClick ;
     LinearLayout  LinearSearchlayout ;
     FilterMealAdapter  filterMealAdapter ;
+    IngredientAdapter ingredientAdapter ;
+    RecyclerView srchcIngrdRcycView ;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,24 +59,34 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         recyclerViewSrchCateg  = view.findViewById(R.id.srchcCtegRcycView);
         recyclerViewSrchCounrty = view.findViewById(R.id.srchcCountyRcycView) ;
         recycViewMealOnClick = view.findViewById(R.id.recycViewMealOnClick) ;
+        srchcIngrdRcycView = view.findViewById(R.id.srchcIngrdRcycView);
         LinearSearchlayout= view.findViewById(R.id.LinearSearchlayout) ;
         remoteDataPresenter = new RemoteDataPresenter(RemoteDataSource.getInstance(), this );
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
-        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(),RecyclerView.HORIZONTAL , false);
+      //  linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewSrchCateg.setLayoutManager(linearLayoutManager);
         searchAdapter = new SearchAdapter(getContext().getApplicationContext(),  recyclerViewSrchCateg,  new ArrayList<Category>() , this) ;
         recyclerViewSrchCateg.setAdapter(searchAdapter);
 
-        LinearLayoutManager linearLayoutManagerCountry = new LinearLayoutManager(getContext().getApplicationContext());
-        linearLayoutManagerCountry.setOrientation(RecyclerView.HORIZONTAL);
+        LinearLayoutManager linearLayoutManagerCountry = new LinearLayoutManager(getContext().getApplicationContext() ,RecyclerView.HORIZONTAL , false);
+       // linearLayoutManagerCountry.setOrientation(RecyclerView.HORIZONTAL);
 
         recyclerViewSrchCounrty.setLayoutManager(linearLayoutManagerCountry);
         searchCounrtyAdapter = new SearchCounrtyAdapter(getContext().getApplicationContext() , recyclerViewSrchCounrty , new ArrayList<Counrty>() ,this) ;
         recyclerViewSrchCounrty.setAdapter(searchCounrtyAdapter);
 
+
+        LinearLayoutManager linearLayoutManagerIngredient = new LinearLayoutManager(getContext()) ;
+        linearLayoutManagerIngredient.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        srchcIngrdRcycView.setLayoutManager(linearLayoutManagerIngredient);
+         ingredientAdapter= new IngredientAdapter(getContext(), srchcIngrdRcycView, new ArrayList<Ingredient>() , this) ;
+        srchcIngrdRcycView.setAdapter(ingredientAdapter);
+
         remoteDataPresenter.getRemoteCatigoreis();
         remoteDataPresenter.getRemoteCountries();
+        remoteDataPresenter.getRemoteIngredient();
 
     }
 
@@ -109,6 +122,20 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     }
 
     @Override
+    public void viewIngredient(List<Ingredient> ingredients) {
+        // pass data to adapter to show it on
+        ingredientAdapter.setIngredientList(ingredients);
+        ingredientAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void viewIngredientMealsByFilter(List<CountryMeal> filterIngredientMeals) {
+        // paass it to adapter to show meals
+        filterMealAdapter.setFilterMealList(filterIngredientMeals);
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onCountryClick(Counrty counrty) {
         HideSearchFragmentEelement() ;
         binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
@@ -128,26 +155,43 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     public void onCatgeoryClick(String catgeorName) {
 
         HideSearchFragmentEelement() ;
-        binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
+        //binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
         LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
         verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recycViewMealOnClick.setLayoutManager(verticalLayoutManager);
+        recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
 
         filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
-        recycViewMealOnClick.setAdapter(filterMealAdapter);
+        recyclerViewSrchCateg.setAdapter(filterMealAdapter);
 
         remoteDataPresenter.getRemoteFilterCategoryMeal(catgeorName);
         filterMealAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onIngerdientClick(String ingredientName) {
+        HideSearchFragmentEelement() ;
+        //binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
+
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+        recyclerViewSrchCateg.setAdapter(filterMealAdapter);
+
+        remoteDataPresenter.getRemoteFilterIngredientMeal(ingredientName);
+        filterMealAdapter.notifyDataSetChanged();
+    }
+
+
     private void HideSearchFragmentEelement(){
         binding.srchBar.setVisibility(View.INVISIBLE);
         binding.srchcCountyRcycView.setVisibility(View.INVISIBLE);
-        binding.srchcCtegRcycView.setVisibility(View.INVISIBLE);
+        //binding.srchcCtegRcycView.setVisibility(View.INVISIBLE);
         binding.textView.setVisibility(View.INVISIBLE);
         binding.textView2.setVisibility(View.INVISIBLE);
         binding.textView3.setVisibility(View.INVISIBLE);
-        binding.srchcInrdiRcycView.setVisibility(View.INVISIBLE);
+        binding.srchcIngrdRcycView.setVisibility(View.INVISIBLE);
 
     }
+
 }
