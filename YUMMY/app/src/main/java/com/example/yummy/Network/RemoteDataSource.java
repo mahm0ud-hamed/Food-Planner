@@ -248,4 +248,33 @@ public class RemoteDataSource {
 
     }
 
+
+    public void makeSearchMealByNameNetworkCall (NetWorkCallBack netWorkDelegate , String mealName ){
+        /*getting response from netwrok */
+        Call<CounrtyMealResponse> call = serviceRequests.searchMealByName(mealName);
+        call.enqueue(new Callback<CounrtyMealResponse>() {
+            @Override
+            public void onResponse(Call<CounrtyMealResponse> call, Response<CounrtyMealResponse> response) {
+                if (response.isSuccessful() ){
+                    /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
+                     * to handle the logic will applied on the returned data */
+                    System.out.println("respnse was got");
+                    netWorkDelegate.onSearchMealByNameSuccessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CounrtyMealResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
+                /* using the reference of the interface which contain call backs , to print  */
+                netWorkDelegate.onSearchMealByNameFailResult(t.getMessage());
+            }
+
+        });
+
+    }
+
 }

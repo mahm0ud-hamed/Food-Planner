@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.R;
+import com.google.android.material.search.SearchBar;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class FilterMealAdapter extends  RecyclerView.Adapter<FilterMealAdapter.V
 
     Context context ;
     List<CountryMeal> countryMeals ;
+
 
     public FilterMealAdapter(Context context , View recyclerView , List<CountryMeal> countryMeals ){
         this.context = context  ;
@@ -51,11 +53,13 @@ public class FilterMealAdapter extends  RecyclerView.Adapter<FilterMealAdapter.V
 
     @Override
     public void onBindViewHolder(@NonNull FilterMealAdapter.ViewHolder holder, int position) {
-        holder.txtFiltrMeal.setText(countryMeals.get(position).getStrMeal());
 
-        Glide.with(context).load(countryMeals.get(position).getStrMealThumb())
-                .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground).into(holder.imgFilterMeal);
+            holder.txtFiltrMeal.setText(countryMeals.get(position).getStrMeal());
+
+            Glide.with(context).load(countryMeals.get(position).getStrMealThumb())
+                    .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground).into(holder.imgFilterMeal);
+
     }
 
     @Override

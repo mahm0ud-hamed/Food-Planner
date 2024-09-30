@@ -27,7 +27,10 @@
             <SearchView
                 android:id="@+id/srchBar"
                 android:layout_width="390dp"
-                android:layout_height="20dp" />
+                android:layout_height="20dp"
+                android:hint="Search"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
 
             <TextView
                 android:id="@+id/textView"

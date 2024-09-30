@@ -72,6 +72,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
                 onClickListner.onIngerdientClick(ingredients.get(position).getStrIngredient());
             }
         });
+
+
     }
 
     public void setIngredientList(List<Ingredient> ingredients){

@@ -14,4 +14,5 @@ public interface ISearchView {
     public void viewCategoryMealsByFilter(List<CountryMeal> filterCategoryMeals) ;
     public void viewIngredient(List<Ingredient> ingredients) ;
     public void viewIngredientMealsByFilter(List<CountryMeal> filterIngredientMeals) ;
+    public void viewSearchMealBYName(List<CountryMeal> searchedMeals) ;
 }

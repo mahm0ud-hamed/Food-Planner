@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView.OnQueryTextListener ;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +16,7 @@ import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.R;
-
+import com.google.android.material.search.SearchBar;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
@@ -32,11 +33,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public  class ViewHolder extends RecyclerView.ViewHolder{
         ImageView categoryImage ;
         ImageView categoryImage2;
+        SearchBar searchBar ;
         public ViewHolder(@NonNull View categoryCard) {
             super(categoryCard);
 
             categoryImage = categoryCard.findViewById(R.id.srchImage) ;
             categoryImage2= categoryCard.findViewById(R.id.srchImage2);
+            SearchBar searchBar = categoryCard.findViewById(R.id.srchBar) ;
         }
     }
     @NonNull
@@ -52,12 +55,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, int position) {
-        if((position %2) == 0){
+        if ((position % 2) == 0) {
             Glide.with(context).load(categories.get(position).getStrCategoryThumb())
-                    .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
+                    .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage);
-        }
-        else{
+        } else {
             Glide.with(context).load(categories.get(position).getStrCategoryThumb())
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage2);
@@ -70,7 +72,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             }
         });
     }
-
     public void setSearchCategoriesList(List<Category > categories ){
         this.categories = categories ;
     }

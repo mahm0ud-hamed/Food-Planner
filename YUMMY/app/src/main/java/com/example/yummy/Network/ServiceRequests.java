@@ -34,4 +34,8 @@ public interface ServiceRequests {
 
     @GET("filter.php")
     Call<CounrtyMealResponse> filterMealByIngredient(@Query("i") String ingredient) ;
+
+    @GET("search.php")
+    Call<CounrtyMealResponse> searchMealByName(@Query("s") String mealName) ;
+
 }

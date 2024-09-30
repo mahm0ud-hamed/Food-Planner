@@ -36,4 +36,7 @@ public interface NetWorkCallBack {
     public void onIngredientSuccessResult(List<Ingredient> ingredients) ;
     public void onIngredientFailResult (String message);
 
+    public void onSearchMealByNameSuccessResult(List<CountryMeal> meals) ;
+    public void onSearchMealByNameFailResult(String message) ;
+
 }

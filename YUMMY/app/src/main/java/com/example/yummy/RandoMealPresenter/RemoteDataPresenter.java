@@ -78,6 +78,11 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
+    public void getRemoteSearchMealByName(String mealName) {
+        reposiory.getRemoteMealSearcByName(remoteSource , this , mealName);
+    }
+
+    @Override
     public void getRemoteIngredient() {
      reposiory.getRemoteIngredient(remoteSource , this);
     }
@@ -179,6 +184,16 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void onIngredientFailResult(String message) {
+
+    }
+
+    @Override
+    public void onSearchMealByNameSuccessResult(List<CountryMeal> meals) {
+        searchView.viewSearchMealBYName(meals);
+    }
+
+    @Override
+    public void onSearchMealByNameFailResult(String message) {
 
     }
 }

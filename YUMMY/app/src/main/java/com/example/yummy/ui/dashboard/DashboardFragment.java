@@ -24,6 +24,8 @@ import com.example.yummy.R;
 import com.example.yummy.RandoMealPresenter.RemoteDataPresenter;
 import com.example.yummy.Repsitory.Reposiory;
 import com.example.yummy.databinding.FragmentSearchBinding;
+import com.google.android.material.search.SearchBar;
+import android.widget.SearchView.OnQueryTextListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +34,18 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
 
     private FragmentSearchBinding binding;
     private SearchView searchView ;
-    RecyclerView recyclerViewSrchCateg ;
-    RemoteDataPresenter remoteDataPresenter;
-    SearchAdapter searchAdapter ;
-    RecyclerView recyclerViewSrchCounrty ;
-    SearchCounrtyAdapter searchCounrtyAdapter ;
-    OnClickListner onClickListner ;
-    RecyclerView recycViewMealOnClick ;
-    LinearLayout  LinearSearchlayout ;
-    FilterMealAdapter  filterMealAdapter ;
-    IngredientAdapter ingredientAdapter ;
-    RecyclerView srchcIngrdRcycView ;
+   private RecyclerView recyclerViewSrchCateg ;
+   private RemoteDataPresenter remoteDataPresenter;
+   private SearchAdapter searchAdapter ;
+   private RecyclerView recyclerViewSrchCounrty ;
+   private SearchCounrtyAdapter searchCounrtyAdapter ;
+   private OnClickListner onClickListner ;
+   private RecyclerView recycViewMealOnClick ;
+   private LinearLayout  LinearSearchlayout ;
+   private FilterMealAdapter  filterMealAdapter ;
+   private IngredientAdapter ingredientAdapter ;
+   private RecyclerView srchcIngrdRcycView ;
+   private SearchView searchBar ;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         recycViewMealOnClick = view.findViewById(R.id.recycViewMealOnClick) ;
         srchcIngrdRcycView = view.findViewById(R.id.srchcIngrdRcycView);
         LinearSearchlayout= view.findViewById(R.id.LinearSearchlayout) ;
+        searchBar = view.findViewById(R.id.srchBar);
         remoteDataPresenter = new RemoteDataPresenter(RemoteDataSource.getInstance(), this );
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext(),RecyclerView.HORIZONTAL , false);
@@ -88,6 +92,28 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         remoteDataPresenter.getRemoteCountries();
         remoteDataPresenter.getRemoteIngredient();
 
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+        verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
+
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+        recyclerViewSrchCateg.setAdapter(filterMealAdapter);
+
+        searchBar.setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                remoteDataPresenter.getRemoteSearchMealByName(s);
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -107,6 +133,12 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         searchCounrtyAdapter.setCounrtiesList(countries);
         searchCounrtyAdapter.notifyDataSetChanged();
     }
+    @Override
+    public void viewIngredient(List<Ingredient> ingredients) {
+        // pass data to adapter to show it on
+        ingredientAdapter.setIngredientList(ingredients);
+        ingredientAdapter.notifyDataSetChanged();
+    }
 
     @Override
     public void viewCountryMealsByFilter(List<CountryMeal> filterCountryMeals) {
@@ -121,18 +153,23 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         filterMealAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void viewIngredient(List<Ingredient> ingredients) {
-        // pass data to adapter to show it on
-        ingredientAdapter.setIngredientList(ingredients);
-        ingredientAdapter.notifyDataSetChanged();
-    }
+
 
     @Override
     public void viewIngredientMealsByFilter(List<CountryMeal> filterIngredientMeals) {
         // paass it to adapter to show meals
         filterMealAdapter.setFilterMealList(filterIngredientMeals);
         filterMealAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void viewSearchMealBYName(List<CountryMeal> searchedMeals) {
+        // passing to adpter
+        if(!(searchedMeals == null || searchedMeals.isEmpty())) {
+            filterMealAdapter.setFilterMealList(searchedMeals);
+            filterMealAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
@@ -182,6 +219,21 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         filterMealAdapter.notifyDataSetChanged();
     }
 
+//    @Override
+//    public void onSearchBarWriteListner(String mealName) {
+//        HideSearchFragmentEelement();
+//        binding.srchBar.setVisibility(View.VISIBLE);
+//        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+//        verticalLayoutManager.setOrientation(RecyclerView.VERTICAL);
+//        recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
+//
+//        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+//        recyclerViewSrchCateg.setAdapter(filterMealAdapter);
+//        remoteDataPresenter.getRemoteSearchMealByName(mealName);
+//        filterMealAdapter.notifyDataSetChanged();
+//
+//    }
+
 
     private void HideSearchFragmentEelement(){
         binding.srchBar.setVisibility(View.INVISIBLE);
@@ -192,6 +244,16 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         binding.textView3.setVisibility(View.INVISIBLE);
         binding.srchcIngrdRcycView.setVisibility(View.INVISIBLE);
 
+    }
+
+    private void HideWithoutSearchBar(){
+        binding.srchcCountyRcycView.setVisibility(View.INVISIBLE);
+        binding.srchcCtegRcycView.setVisibility(View.INVISIBLE);
+        binding.textView.setVisibility(View.INVISIBLE);
+        binding.textView2.setVisibility(View.INVISIBLE);
+        binding.textView3.setVisibility(View.INVISIBLE);
+        binding.srchcIngrdRcycView.setVisibility(View.INVISIBLE);
+        binding.recycViewMealOnClick.setVisibility(View.VISIBLE);
     }
 
 }
