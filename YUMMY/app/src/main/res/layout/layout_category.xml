@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/randomCard"
-        android:layout_width="128dp"
-        android:layout_height="132dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginStart="10dp"
-        app:cardCornerRadius="40dp"
-        app:cardElevation="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="6dp">
+        android:layout_marginEnd="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,20 +24,41 @@
             <ImageView
                 android:id="@+id/imgCateg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/textCateg"
-                android:layout_width="123dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="85dp"
-                android:gravity="center"
-                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp"
+                android:padding="5dp"
+                android:shadowRadius="2"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="@+id/imgCateg"
-                tools:layout_editor_absoluteX="5dp" />
+                tools:layout_editor_absoluteX="0dp"
+                tools:text="Components" />
+
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="9dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Favorite"
+                android:scaleType="fitXY"
+                android:src="@drawable/favorite_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

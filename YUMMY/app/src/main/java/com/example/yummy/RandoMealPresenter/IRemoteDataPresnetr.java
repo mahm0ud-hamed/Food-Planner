@@ -12,6 +12,7 @@ public interface IRemoteDataPresnetr {
     public void getRemoteFilterCategoryMeal(String category) ;
     public void getRemoteFilterIngredientMeal(String ingredient) ;
     public void getRemoteSearchMealByName(String mealName) ;
+    public void getRemoteMealDetailsByName(String mealName) ;
     public void getRemoteIngredient() ;
 
 }

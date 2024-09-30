@@ -48,9 +48,15 @@ public class Reposiory implements IRepository {
     }
 
     @Override
+    public void getRemoteMealDetailsByName(RemoteDataSource remoteDataSource, NetWorkCallBack netWorkCallBack, String mealName) {
+        remoteDataSource.makeSearchMealDetailByNameNetworkCall(netWorkCallBack,mealName);
+    }
+
+    @Override
     public void getRemoteIngredient(RemoteDataSource remoteDataSource, NetWorkCallBack netWorkCallBack) {
         remoteDataSource.makeIngredientNetworkCall(netWorkCallBack);
     }
+
 
 
 

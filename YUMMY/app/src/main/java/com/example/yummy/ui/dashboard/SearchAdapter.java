@@ -38,7 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             super(categoryCard);
 
             categoryImage = categoryCard.findViewById(R.id.srchImage) ;
-            categoryImage2= categoryCard.findViewById(R.id.srchImage2);
+           // categoryImage2= categoryCard.findViewById(R.id.srchImage2);
             SearchBar searchBar = categoryCard.findViewById(R.id.srchBar) ;
         }
     }
@@ -60,9 +60,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage);
         } else {
-            Glide.with(context).load(categories.get(position).getStrCategoryThumb())
-                    .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
-                    .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage2);
+//            Glide.with(context).load(categories.get(position).getStrCategoryThumb())
+//                    .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
+//                    .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage2);
         }
 
         holder.categoryImage.setOnClickListener(new View.OnClickListener() {

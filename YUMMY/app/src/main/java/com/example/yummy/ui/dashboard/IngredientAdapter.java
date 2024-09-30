@@ -35,7 +35,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
             super(IngerdCard);
 
             ImageIngerd = IngerdCard.findViewById(R.id.srchImage) ;
-            ImageIngerd2= IngerdCard.findViewById(R.id.srchImage2);
+           // ImageIngerd2= IngerdCard.findViewById(R.id.srchImage2);
         }
     }
     @NonNull
@@ -66,12 +66,12 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
                 onClickListner.onIngerdientClick(ingredients.get(position).getStrIngredient());
             }
         });
-        holder.ImageIngerd2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickListner.onIngerdientClick(ingredients.get(position).getStrIngredient());
-            }
-        });
+//        holder.ImageIngerd2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onClickListner.onIngerdientClick(ingredients.get(position).getStrIngredient());
+//            }
+//        });
 
 
     }

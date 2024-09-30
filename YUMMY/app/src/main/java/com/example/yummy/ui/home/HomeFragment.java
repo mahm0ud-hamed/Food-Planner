@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment implements IHomeView {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        setImageLogo(view);
+      //  setImageLogo(view);
         imgRandoMeal = view.findViewById(R.id.rannMealImg);
        // imgCounrtyMeal = view.findViewById(R.id.imgCounrtyMeal) ;
         cardRamdom = view.findViewById(R.id.randomCard) ;
@@ -125,10 +125,10 @@ public class HomeFragment extends Fragment implements IHomeView {
         //display country meal error from calling data
     }
 
-    public void setImageLogo(View view){
-
-        logoImag = view.findViewById(R.id.imgLogo) ;
-        logoImag.setImageResource(R.drawable.yummylogo);
-
-    }
+//    public void setImageLogo(View view){
+//
+//        logoImag = view.findViewById(R.id.imgLogo) ;
+//        logoImag.setImageResource(R.drawable.yummylogo);
+//
+//    }
 }

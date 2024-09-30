@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/counrtyRecycView"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
     android:clipToPadding="false"
@@ -17,12 +17,13 @@
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top"
         android:orientation="vertical"
         android:paddingBottom="70dp"
-        android:weightSum="10">
+        android:weightSum="10"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -30,11 +31,10 @@
 
             <TextView
                 android:id="@+id/txtBanner"
-                android:layout_width="289dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="0dp"
                 android:layout_marginVertical="0dp"
-                android:gravity="top"
                 android:text="@string/yummy"
                 android:textColor="#3DA0A7"
                 android:textColorHighlight="#FFFFFF"
@@ -42,20 +42,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLogo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                tools:text="YUMMY" />
-
-            <ImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="113dp"
-                android:layout_height="42dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtBanner"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:text="YUMMY" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,65 +55,101 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:text="@string/random_inspiration"
-            android:textColor="#00BCD4"
-            android:textSize="20sp" />
+            android:textColor="#3DA0A7"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/randomCard"
-            android:layout_width="390dp"
-            android:layout_height="190dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardCornerRadius="40dp"
-            app:cardElevation="100dp">
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:elevation="20dp"
+            android:foreground="@android:color/transparent"
+            app:cardCornerRadius="20dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#DEA7A7">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="46dp"
-                    android:layout_height="44dp"
-                    android:layout_marginEnd="12dp"
-                    android:src="@android:drawable/btn_star_big_on"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
                     android:id="@+id/rannMealImg"
-                    android:layout_width="349dp"
-                    android:layout_height="139dp"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintBottom_toTopOf="@+id/imageButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="-1dp"
+                    android:layout_marginBottom="0dp"
+                    android:alpha="0.9"
+                    android:background="@drawable/image_corner"
+                    android:scaleType="centerCrop" />
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="71dp"
-                    android:layout_height="39dp"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="2dp"
-                    android:src="@android:drawable/dialog_frame"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rannMealImg" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#40000000">
 
-                <TextView
-                    android:id="@+id/txtRandName"
-                    android:layout_width="241dp"
-                    android:layout_height="46dp"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton"
-                    app:layout_constraintStart_toEndOf="@+id/imageButton2"
-                    app:layout_constraintTop_toBottomOf="@+id/rannMealImg"
-                    app:layout_constraintVertical_bias="0.0" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/txtRandName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:shadowColor="@android:color/black"
+                        android:shadowRadius="2"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="Components" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#30000000">
+
+                    <ImageButton
+                        android:id="@+id/btnFavorite"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="9dp"
+                        android:layout_marginBottom="9dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="Favorite"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/favorite_border_24" />
+
+                    <TextView
+                        android:id="@+id/plane_btn"
+                        style="@style/CardView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignTop="@+id/btnFavorite"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/baseline_calendar_month_24"
+                        android:gravity="center"
+                        android:text="Add To Your Plan"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -135,10 +160,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:text="@string/category"
-            android:textColor="#00BCD4"
+            android:textColor="#3DA0A7"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclViewCateg"
@@ -153,10 +179,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
+            android:gravity="center"
             android:text="@string/acordin_country"
-            android:textColor="#00BCD4"
+            android:textColor="#3DA0A7"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycCounrtyView"

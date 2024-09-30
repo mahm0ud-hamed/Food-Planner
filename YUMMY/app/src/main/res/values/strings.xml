@@ -12,4 +12,6 @@
     <string name="random_inspiration">Random Inspirtion</string>
     <string name="category">More about food category</string>
     <string name="acordin_country">According to country</string>
+    <string name="search">Search</string>
+    <string name="favourite">Favourite</string>
 </resources>

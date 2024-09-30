@@ -3,6 +3,8 @@ package com.example.yummy.Network;
 
 import android.util.Log;
 
+import com.example.yummy.Model.MealDetails;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -277,4 +279,32 @@ public class RemoteDataSource {
 
     }
 
+
+    public void makeSearchMealDetailByNameNetworkCall (NetWorkCallBack netWorkDelegate , String mealName ){
+        /*getting response from netwrok */
+        Call<MealDetailResponse> call = serviceRequests.searchMealDetailByName(mealName);
+        call.enqueue(new Callback<MealDetailResponse>() {
+            @Override
+            public void onResponse(Call<MealDetailResponse> call, Response<MealDetailResponse> response) {
+                if (response.isSuccessful() ){
+                    /*using the refrence of network callback which is implemented by class who need data "PRESENTER"
+                     * to handle the logic will applied on the returned data */
+                    System.out.println("respnse was got");
+                    netWorkDelegate.onSearchMealDetailByNameSuccessResult(response.body().meals);
+                }else {
+
+                    Log.e("API Response", "Response body is null");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealDetailResponse> call, Throwable t) {
+                System.out.println("response is not getten ");
+                /* using the reference of the interface which contain call backs , to print  */
+                netWorkDelegate.onSearchMealDetailByNameFailResult(t.getMessage());
+            }
+
+        });
+
+    }
 }

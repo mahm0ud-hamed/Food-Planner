@@ -6,11 +6,13 @@ import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Model.Ingredient;
+import com.example.yummy.Model.MealDetails;
 import com.example.yummy.Model.RandomMeal;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.Network.NetWorkCallBack;
 import com.example.yummy.Repsitory.Reposiory;
 import com.example.yummy.Repsitory.IRepository;
+import com.example.yummy.ui.dashboard.IMealsListView;
 import com.example.yummy.ui.dashboard.ISearchView;
 import com.example.yummy.ui.home.IHomeView;
 
@@ -25,6 +27,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     ISearchView searchView ;
     // refrence from remote data source
     RemoteDataSource remoteSource ;
+    IMealsListView mealsListView ;
 
 
     // refrence from repository to call with
@@ -39,6 +42,12 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     public RemoteDataPresenter(RemoteDataSource mealRemoteDataSourceC , ISearchView iSearchView){
         this.remoteSource = mealRemoteDataSourceC ;
         this.searchView = iSearchView ;
+
+    }
+
+    public RemoteDataPresenter(RemoteDataSource mealRemoteDataSourceC , IMealsListView mealsListView){
+        this.remoteSource = mealRemoteDataSourceC ;
+        this.mealsListView = mealsListView ;
 
     }
     @Override
@@ -80,6 +89,11 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     @Override
     public void getRemoteSearchMealByName(String mealName) {
         reposiory.getRemoteMealSearcByName(remoteSource , this , mealName);
+    }
+
+    @Override
+    public void getRemoteMealDetailsByName(String mealName) {
+        reposiory.getRemoteMealDetailsByName(remoteSource ,this , mealName);
     }
 
     @Override
@@ -148,7 +162,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void onCountryMealFilterSucssessResult(List<CountryMeal> countryMeals) {
-        searchView.viewCountryMealsByFilter(countryMeals);
+        mealsListView.viewCountryMealsByFilter(countryMeals);
     }
 
     @Override
@@ -163,7 +177,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void oncategoryMealFilterSucssessResult(List<CountryMeal> categotymeal) {
-        searchView.viewCategoryMealsByFilter(categotymeal);
+        mealsListView.viewCategoryMealsByFilter(categotymeal);
 
     }
 
@@ -174,7 +188,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void onIngerdientFilterSucssessResult(List<CountryMeal> ingerdients) {
-        searchView.viewIngredientMealsByFilter(ingerdients);
+        mealsListView.viewIngredientMealsByFilter(ingerdients);
     }
 
     @Override
@@ -194,6 +208,17 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
     @Override
     public void onSearchMealByNameFailResult(String message) {
+
+    }
+
+    @Override
+    public void onSearchMealDetailByNameSuccessResult(List<MealDetails> mealDetails) {
+        // pass data to activity which will intersted ti show it sd
+        4
+    }
+
+    @Override
+    public void onSearchMealDetailByNameFailResult(String meassage) {
 
     }
 }

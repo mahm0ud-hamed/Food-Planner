@@ -10,9 +10,7 @@ import java.util.List;
 public interface ISearchView {
     public void viewSearchCategory(List<Category> categories) ;
     public void viewSearchCounrty(List<Counrty> counrties) ;
-    public void viewCountryMealsByFilter(List<CountryMeal> filterCountryMeals) ;
-    public void viewCategoryMealsByFilter(List<CountryMeal> filterCategoryMeals) ;
     public void viewIngredient(List<Ingredient> ingredients) ;
-    public void viewIngredientMealsByFilter(List<CountryMeal> filterIngredientMeals) ;
+
     public void viewSearchMealBYName(List<CountryMeal> searchedMeals) ;
 }

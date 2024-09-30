@@ -1,41 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="250dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dp"
+    android:elevation="20dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="413dp"
-        android:layout_height="186dp"
-        app:cardCornerRadius="40dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/ImgMealFilter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="50dp">
+            android:alpha="0.9"
+            android:background="@drawable/image_corner"
+            android:scaleType="centerCrop"/>
 
-            <ImageView
-                android:id="@+id/ImgMealFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#40000000">
 
             <TextView
                 android:id="@+id/txtMealNameFilter"
-                android:layout_width="212dp"
-                android:layout_height="62dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="60dp"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/ImgMealFilter"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:shadowColor="@android:color/black"
+                android:shadowRadius="2"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="#30000000">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="9dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Favorite"
+                android:scaleType="fitXY"
+                android:src="@drawable/favorite_border_24" />
+
+            <TextView
+                android:id="@+id/plane_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/btnFavorite"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/baseline_calendar_month_24"
+                android:gravity="center"
+                android:text="Add To Your Plan"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

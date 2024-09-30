@@ -4,6 +4,7 @@ import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
 import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.Model.Ingredient;
+import com.example.yummy.Model.MealDetails;
 import com.example.yummy.Model.RandomMeal;
 
 import java.util.List;
@@ -38,5 +39,10 @@ public interface NetWorkCallBack {
 
     public void onSearchMealByNameSuccessResult(List<CountryMeal> meals) ;
     public void onSearchMealByNameFailResult(String message) ;
+
+    public void onSearchMealDetailByNameSuccessResult(List<MealDetails> mealDetails) ;
+    public void onSearchMealDetailByNameFailResult(String meassage) ;
+
+
 
 }

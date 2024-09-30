@@ -1,5 +1,7 @@
 package com.example.yummy.Network;
 
+import com.example.yummy.Model.MealDetails;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -37,5 +39,8 @@ public interface ServiceRequests {
 
     @GET("search.php")
     Call<CounrtyMealResponse> searchMealByName(@Query("s") String mealName) ;
+
+    @GET("search.php")
+    Call<MealDetailResponse> searchMealDetailByName(@Query("s") String mealName) ;
 
 }
