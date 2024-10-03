@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
@@ -85,7 +85,7 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         linearLayoutManagerIngredient.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         srchcIngrdRcycView.setLayoutManager(linearLayoutManagerIngredient);
-        ingredientAdapter= new IngredientAdapter(getContext(), srchcIngrdRcycView, new ArrayList<Ingredient>() , this) ;
+        ingredientAdapter= new IngredientAdapter(getContext(), srchcIngrdRcycView, new ArrayList<Ingredient>() , this.onClickListner) ;
         srchcIngrdRcycView.setAdapter(ingredientAdapter);
 
 
@@ -94,7 +94,7 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
         verticalLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
 
-        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<CountryMeal>());
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<Meal>());
 
 
     }
@@ -150,7 +150,7 @@ public class DashboardFragment extends Fragment implements ISearchView , OnClick
     }
 
     @Override
-    public void viewSearchMealBYName(List<CountryMeal> searchedMeals) {
+    public void viewSearchMealBYName(List<Meal> searchedMeals) {
         // passing to adpter
         if(!(searchedMeals == null || searchedMeals.isEmpty())) {
             filterMealAdapter.setFilterMealList(searchedMeals);

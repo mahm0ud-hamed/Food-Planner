@@ -1,5 +1,9 @@
 package com.example.yummy.Model;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MealDetails {
     public String idMeal;
     public String strMeal;
@@ -333,4 +337,40 @@ public class MealDetails {
     public Object strImageSource;
     public Object strCreativeCommonsConfirmed;
     public Object dateModified;
+
+
+    public List<String> getAllIngredientNames(){
+        List<String> ingreidentName = new ArrayList<>() ;
+        for (int i =1 ; i <= 20 ; i++){
+            try {
+                Field field = this.getClass().getDeclaredField("strIngredient"+i);
+                String value = (String) field.get(this) ;
+                if(value != null && !value.isEmpty()){
+                    ingreidentName.add(value) ;
+                }
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return ingreidentName ;
+    }
+    public List<String> getAllIngredientAmount(){
+        List<String> ingreidentAmount = new ArrayList<>() ;
+        for (int i =1 ; i <= 20 ; i++){
+            try {
+                Field field = this.getClass().getDeclaredField("strMeasure"+i);
+                String value = (String) field.get(this) ;
+                if(value != null && !value.isEmpty()){
+                    ingreidentAmount.add(value) ;
+                }
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return ingreidentAmount ;
+    }
 }

@@ -1,10 +1,8 @@
 package com.example.yummy.RandoMealPresenter;
 
-import android.widget.SearchView;
-
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Model.MealDetails;
 import com.example.yummy.Model.RandomMeal;
@@ -12,6 +10,7 @@ import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.Network.NetWorkCallBack;
 import com.example.yummy.Repsitory.Reposiory;
 import com.example.yummy.Repsitory.IRepository;
+import com.example.yummy.ui.Details.IMealDetail;
 import com.example.yummy.ui.dashboard.IMealsListView;
 import com.example.yummy.ui.dashboard.ISearchView;
 import com.example.yummy.ui.home.IHomeView;
@@ -28,6 +27,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     // refrence from remote data source
     RemoteDataSource remoteSource ;
     IMealsListView mealsListView ;
+    IMealDetail mealDetail ;
 
 
     // refrence from repository to call with
@@ -48,6 +48,11 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     public RemoteDataPresenter(RemoteDataSource mealRemoteDataSourceC , IMealsListView mealsListView){
         this.remoteSource = mealRemoteDataSourceC ;
         this.mealsListView = mealsListView ;
+
+    }
+    public RemoteDataPresenter(RemoteDataSource mealRemoteDataSourceC , IMealDetail mealDetail){
+        this.remoteSource = mealRemoteDataSourceC ;
+        this.mealDetail = mealDetail ;
 
     }
     @Override
@@ -133,14 +138,14 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
 
 
     @Override
-    public void onCountyMealSuccessResult(List<CountryMeal> countryMeals) {
+    public void onCountyMealSuccessResult(List<Meal> meals) {
         // call home view display counrty image
         System.out.println("mahmoud hamed ");
-        if(countryMeals == null){
+        if(meals == null){
             System.out.println(" iam null ");
         }
-        System.out.println(countryMeals.get(0).getStrMealThumb());
-        homeView.displayCountryMeals(countryMeals);
+        System.out.println(meals.get(0).getStrMealThumb());
+        homeView.displayCountryMeals(meals);
 
     }
 
@@ -161,8 +166,8 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
-    public void onCountryMealFilterSucssessResult(List<CountryMeal> countryMeals) {
-        mealsListView.viewCountryMealsByFilter(countryMeals);
+    public void onCountryMealFilterSucssessResult(List<Meal> meals) {
+        mealsListView.viewCountryMealsByFilter(meals);
     }
 
     @Override
@@ -176,7 +181,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
-    public void oncategoryMealFilterSucssessResult(List<CountryMeal> categotymeal) {
+    public void oncategoryMealFilterSucssessResult(List<Meal> categotymeal) {
         mealsListView.viewCategoryMealsByFilter(categotymeal);
 
     }
@@ -187,7 +192,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
-    public void onIngerdientFilterSucssessResult(List<CountryMeal> ingerdients) {
+    public void onIngerdientFilterSucssessResult(List<Meal> ingerdients) {
         mealsListView.viewIngredientMealsByFilter(ingerdients);
     }
 
@@ -202,7 +207,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     }
 
     @Override
-    public void onSearchMealByNameSuccessResult(List<CountryMeal> meals) {
+    public void onSearchMealByNameSuccessResult(List<Meal> meals) {
         searchView.viewSearchMealBYName(meals);
     }
 
@@ -214,7 +219,7 @@ public class RemoteDataPresenter implements IRemoteDataPresnetr, NetWorkCallBack
     @Override
     public void onSearchMealDetailByNameSuccessResult(List<MealDetails> mealDetails) {
         // pass data to activity which will intersted ti show it sd
-        4
+        mealDetail.viewMealDetails(mealDetails);
     }
 
     @Override

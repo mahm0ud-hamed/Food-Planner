@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SearchView.OnQueryTextListener ;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Category;
-import com.example.yummy.Model.Counrty;
-import com.example.yummy.Model.CountryMeal;
 import com.example.yummy.R;
 import com.google.android.material.search.SearchBar;
 import java.util.List;

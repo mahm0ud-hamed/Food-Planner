@@ -14,4 +14,9 @@
     <string name="acordin_country">According to country</string>
     <string name="search">Search</string>
     <string name="favourite">Favourite</string>
+    <string name="instruction" />
+    <string name="instructions">Instruction</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="video" />
+    <string name="mealVideo">Explanatory video</string>
 </resources>

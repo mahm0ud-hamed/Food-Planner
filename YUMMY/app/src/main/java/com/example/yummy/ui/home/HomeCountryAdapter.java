@@ -12,28 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 import com.example.yummy.R;
+import com.example.yummy.ui.Details.onMealClickListener;
 
 import java.util.List;
 
 public class HomeCountryAdapter extends RecyclerView.Adapter<HomeCountryAdapter.ViewHolder> {
     Context context ;
-    List<CountryMeal> countryMeals ;
+    List<Meal> meals;
+    com.example.yummy.ui.Details.onMealClickListener onMealClickListener;
     
-    public HomeCountryAdapter(Context context , View recyclerView , List<CountryMeal> countryMeals){
+    public HomeCountryAdapter(Context context , View recyclerView , List<Meal> meals, onMealClickListener onMealClickListener){
         this.context = context ;
-        this.countryMeals = countryMeals ;
+        this.meals = meals;
+        this.onMealClickListener = onMealClickListener ;
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgCounty;
-        TextView txtCounrty ;
+        ImageView imgMeal;
+        TextView txtMealName;
 
         public ViewHolder(@NonNull View categoryCard) {
             super(categoryCard);
 
-            imgCounty = categoryCard.findViewById(R.id.imgCateg) ;
-            txtCounrty = categoryCard.findViewById(R.id.textCateg) ;
+            imgMeal = categoryCard.findViewById(R.id.imgCateg) ;
+            txtMealName = categoryCard.findViewById(R.id.textCateg) ;
         }
     }
     @NonNull
@@ -48,20 +51,25 @@ public class HomeCountryAdapter extends RecyclerView.Adapter<HomeCountryAdapter.
     @Override
     public void onBindViewHolder(@NonNull HomeCountryAdapter.ViewHolder viewHolder, int position) {
 
-        viewHolder.txtCounrty.setText(countryMeals.get(position).getStrMeal());
-
-        Glide.with(context).load(countryMeals.get(position).getStrMealThumb())
+        viewHolder.txtMealName.setText(meals.get(position).getStrMeal());
+        Glide.with(context).load(meals.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground).into(viewHolder.imgCounty);
+                .error(R.drawable.ic_launcher_foreground).into(viewHolder.imgMeal);
 
+        viewHolder.imgMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onMealClickListener.onMealClick(meals.get(position).getStrMeal());
+            }
+        });
     }
 
-    public void setCounrtyMealsList(List<CountryMeal> countryMeals){
-        this.countryMeals = countryMeals;
+    public void setCounrtyMealsList(List<Meal> meals){
+        this.meals = meals;
     }
 
     @Override
     public int getItemCount() {
-        return countryMeals.size();
+        return meals.size();
     }
 }

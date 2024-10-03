@@ -1,9 +1,9 @@
 package com.example.yummy.Network;
 
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 
 import java.util.List;
 
 public class CounrtyMealResponse {
-    public List<CountryMeal> meals;
+    public List<Meal> meals;
 }

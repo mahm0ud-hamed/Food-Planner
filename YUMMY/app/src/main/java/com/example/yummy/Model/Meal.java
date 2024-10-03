@@ -1,6 +1,6 @@
 package com.example.yummy.Model;
 
-public class CountryMeal {
+public class Meal {
     public String strMeal;
     public String strMealThumb;
     public String idMeal;
@@ -30,7 +30,7 @@ public class CountryMeal {
         return strMeal;
     }
 
-    public CountryMeal(String strCountryMeal, String strCountyMealThumb, String idCounrtyMeal) {
+    public Meal(String strCountryMeal, String strCountyMealThumb, String idCounrtyMeal) {
         this.strMeal = strCountryMeal;
         this.strMealThumb = strCountyMealThumb;
         this.idMeal = idCounrtyMeal;

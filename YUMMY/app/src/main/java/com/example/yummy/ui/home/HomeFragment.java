@@ -1,5 +1,6 @@
 package com.example.yummy.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +16,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Category;
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.RandomMeal;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
 import com.example.yummy.RandoMealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentHomeBinding;
+import com.example.yummy.ui.Details.MealDetailsActivity;
+import com.example.yummy.ui.Details.onMealClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements IHomeView {
-
+public class HomeFragment extends Fragment implements IHomeView , onMealClickListener {
+    public static final String MealKey= "mealNmae" ;
     private FragmentHomeBinding binding;
     ImageView imgRandoMeal;
     ImageView imgCategory ;
@@ -57,6 +59,7 @@ public class HomeFragment extends Fragment implements IHomeView {
        // imgCounrtyMeal = view.findViewById(R.id.imgCounrtyMeal) ;
         cardRamdom = view.findViewById(R.id.randomCard) ;
         txtRandName = view.findViewById(R.id.txtRandName) ;
+
         recyclViewCateg = view.findViewById(R.id.recyclViewCateg) ;
         recyclerViewCounrty =view.findViewById(R.id.recycCounrtyView);
 
@@ -64,7 +67,7 @@ public class HomeFragment extends Fragment implements IHomeView {
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewCounrty.setLayoutManager(linearLayoutManager);
 
-        homeCountryAdapter= new HomeCountryAdapter(getContext().getApplicationContext() , recyclerViewCounrty , new ArrayList<CountryMeal>()) ;
+        homeCountryAdapter= new HomeCountryAdapter(getContext().getApplicationContext() , recyclerViewCounrty , new ArrayList<Meal>(), this) ;
         recyclerViewCounrty.setAdapter(homeCountryAdapter);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext().getApplicationContext());
@@ -114,9 +117,9 @@ public class HomeFragment extends Fragment implements IHomeView {
     }
 
     @Override
-    public void displayCountryMeals(List<CountryMeal> countryMeals) {
+    public void displayCountryMeals(List<Meal> meals) {
 
-        homeCountryAdapter.setCounrtyMealsList(countryMeals);
+        homeCountryAdapter.setCounrtyMealsList(meals);
         homeCountryAdapter.notifyDataSetChanged();
     }
 
@@ -125,10 +128,11 @@ public class HomeFragment extends Fragment implements IHomeView {
         //display country meal error from calling data
     }
 
-//    public void setImageLogo(View view){
-//
-//        logoImag = view.findViewById(R.id.imgLogo) ;
-//        logoImag.setImageResource(R.drawable.yummylogo);
-//
-//    }
+    @Override
+    public void onMealClick(String MealName) {
+        Intent toMealDetailsListIntent = new Intent(getContext() , MealDetailsActivity.class) ;
+        toMealDetailsListIntent.putExtra(MealKey, MealName) ;
+        HomeFragment.this.startActivity(toMealDetailsListIntent);
+    }
+
 }

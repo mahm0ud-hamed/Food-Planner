@@ -12,22 +12,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.yummy.Model.Counrty;
-import com.example.yummy.Model.CountryMeal;
+import com.example.yummy.Model.Meal;
 import com.example.yummy.R;
-import com.google.android.material.search.SearchBar;
+import com.example.yummy.ui.Details.onMealClickListener;
 
 import java.util.List;
 
 public class FilterMealAdapter extends  RecyclerView.Adapter<FilterMealAdapter.ViewHolder> {
 
     Context context ;
-    List<CountryMeal> countryMeals ;
+    List<Meal> meals;
+    onMealClickListener onMealClickListener ;
 
 
-    public FilterMealAdapter(Context context , View recyclerView , List<CountryMeal> countryMeals ){
+    public FilterMealAdapter(Context context , View recyclerView , List<Meal> meals, onMealClickListener onMealClickListener ){
         this.context = context  ;
-        this.countryMeals = countryMeals ;
+        this.meals = meals;
+        this.onMealClickListener = onMealClickListener ;
+    }
+    public FilterMealAdapter(Context context , View recyclerView , List<Meal> meals){
+        this.context = context  ;
+        this.meals = meals;
+        this.onMealClickListener = onMealClickListener ;
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder{
@@ -54,20 +60,26 @@ public class FilterMealAdapter extends  RecyclerView.Adapter<FilterMealAdapter.V
     @Override
     public void onBindViewHolder(@NonNull FilterMealAdapter.ViewHolder holder, int position) {
 
-            holder.txtFiltrMeal.setText(countryMeals.get(position).getStrMeal());
+            holder.txtFiltrMeal.setText(meals.get(position).getStrMeal());
 
-            Glide.with(context).load(countryMeals.get(position).getStrMealThumb())
+            Glide.with(context).load(meals.get(position).getStrMealThumb())
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.imgFilterMeal);
+            holder.imgFilterMeal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onMealClickListener.onMealClick(meals.get(position).getStrMeal()) ;
+                }
+            });
 
     }
 
     @Override
     public int getItemCount() {
-        return countryMeals.size();
+        return meals.size();
     }
 
-    public void setFilterMealList(  List<CountryMeal> countryMeals ){
-        this.countryMeals = countryMeals ;
+    public void setFilterMealList(  List<Meal> meals){
+        this.meals = meals;
     }
 }
