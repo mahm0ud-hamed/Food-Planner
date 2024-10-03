@@ -1,4 +1,4 @@
-package com.example.yummy.RandoMealPresenter;
+package com.example.yummy.RemoteMealPresenter;
 
 import com.example.yummy.Model.Category;
 import com.example.yummy.Model.Counrty;

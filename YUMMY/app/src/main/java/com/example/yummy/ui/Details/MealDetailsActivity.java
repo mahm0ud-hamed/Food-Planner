@@ -4,32 +4,22 @@ import static com.example.yummy.ui.home.HomeFragment.MealKey;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.MealDetails;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
-import com.example.yummy.RandoMealPresenter.RemoteDataPresenter;
+import com.example.yummy.RemoteMealPresenter.RemoteDataPresenter;
 import com.example.yummy.ui.dashboard.IngredientAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MealDetailsActivity extends AppCompatActivity implements IMealDetail {

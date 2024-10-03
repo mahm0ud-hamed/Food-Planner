@@ -20,7 +20,7 @@ import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.Ingredient;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
-import com.example.yummy.RandoMealPresenter.RemoteDataPresenter;
+import com.example.yummy.RemoteMealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentSearchBinding;
 
 import android.widget.SearchView.OnQueryTextListener;

@@ -21,7 +21,7 @@ import com.example.yummy.Model.Meal;
 import com.example.yummy.Model.RandomMeal;
 import com.example.yummy.Network.RemoteDataSource;
 import com.example.yummy.R;
-import com.example.yummy.RandoMealPresenter.RemoteDataPresenter;
+import com.example.yummy.RemoteMealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentHomeBinding;
 import com.example.yummy.ui.Details.MealDetailsActivity;
 import com.example.yummy.ui.Details.onMealClickListener;
@@ -54,6 +54,10 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        remoteDataPresenter.getRemoteRandomMeal();
+        remoteDataPresenter.getRemoteCatigoreis();
+        remoteDataPresenter.getRemoteCountryMeals();
       //  setImageLogo(view);
         imgRandoMeal = view.findViewById(R.id.rannMealImg);
        // imgCounrtyMeal = view.findViewById(R.id.imgCounrtyMeal) ;
@@ -77,9 +81,6 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
         categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(),  recyclViewCateg,  new ArrayList<Category>()) ;
         recyclViewCateg.setAdapter(categoryAdapter);
 
-        remoteDataPresenter.getRemoteRandomMeal();
-        remoteDataPresenter.getRemoteCatigoreis();
-        remoteDataPresenter.getRemoteCountryMeals();
 
 
     }
@@ -91,11 +92,19 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
     }
 
     @Override
-    public void displayRandoMeal(List<RandomMeal> Meal) {
-        Glide.with(this).load(Meal.get(0).getStrMealThumb())
+    public void displayRandoMeal(List<RandomMeal> meal) {
+        Glide.with(this).load(meal.get(0).getStrMealThumb())
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(imgRandoMeal);
-        txtRandName.setText(Meal.get(0).getStrMeal());
+        txtRandName.setText(meal.get(0).getStrMeal());
+        imgRandoMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toMealDetailsListIntent = new Intent(getContext() , MealDetailsActivity.class) ;
+                toMealDetailsListIntent.putExtra(MealKey, meal.get(0).getStrMeal()) ;
+                HomeFragment.this.startActivity(toMealDetailsListIntent);
+            }
+        });
     }
 
     @Override

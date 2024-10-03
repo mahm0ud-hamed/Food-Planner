@@ -1,4 +1,4 @@
-package com.example.yummy.RandoMealPresenter;
+package com.example.yummy.RemoteMealPresenter;
 
 public interface IRemoteDataPresnetr {
 

@@ -86,6 +86,8 @@
                 android:id="@+id/editTextTextMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine" />

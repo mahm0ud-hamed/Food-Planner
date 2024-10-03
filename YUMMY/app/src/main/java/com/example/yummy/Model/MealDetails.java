@@ -338,7 +338,7 @@ public class MealDetails {
     public Object strCreativeCommonsConfirmed;
     public Object dateModified;
 
-
+        /*helper functions that will make all ingredient name in array list to make it east to parse in adapater */
     public List<String> getAllIngredientNames(){
         List<String> ingreidentName = new ArrayList<>() ;
         for (int i =1 ; i <= 20 ; i++){
@@ -356,6 +356,9 @@ public class MealDetails {
         }
         return ingreidentName ;
     }
+
+    /*helper functions that will make all ingredient Amount in array list to make it east to parse in adapater */
+
     public List<String> getAllIngredientAmount(){
         List<String> ingreidentAmount = new ArrayList<>() ;
         for (int i =1 ; i <= 20 ; i++){
