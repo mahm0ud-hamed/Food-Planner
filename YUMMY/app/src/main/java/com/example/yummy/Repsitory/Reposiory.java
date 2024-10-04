@@ -1,7 +1,13 @@
 package com.example.yummy.Repsitory;
 
-import com.example.yummy.Network.RemoteDataSource;
-import com.example.yummy.Network.NetWorkCallBack;
+import androidx.lifecycle.LiveData;
+
+import com.example.yummy.Model.DataBase.MealDao;
+import com.example.yummy.Model.Network.RemoteDataSource;
+import com.example.yummy.Model.Network.NetWorkCallBack;
+import com.example.yummy.Model.Pojos.MealDetails;
+
+import java.util.List;
 
 public class Reposiory implements IRepository {
 
@@ -57,7 +63,24 @@ public class Reposiory implements IRepository {
         remoteDataSource.makeIngredientNetworkCall(netWorkCallBack);
     }
 
+    @Override
+    public LiveData<List<MealDetails>> getAllFavouriteMeals(MealDao mealDAO) {
+        return mealDAO.getAllFavouriteMeasl() ;
+    }
 
+    @Override
+    public void deleteFavouriteMeal(MealDao mealDAO, MealDetails mealDetails) {
 
+       new Thread(()->{
+            mealDAO.deleteMealFromFavourite(mealDetails);
+        }).start();
+    }
+
+    @Override
+    public void insertMealToFavourite(MealDao mealDAO, MealDetails mealDetails) {
+        new Thread(()->{
+            mealDAO.insertMealToFavourite(mealDetails);
+        }).start();
+    }
 
 }

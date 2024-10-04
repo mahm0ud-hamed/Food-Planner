@@ -20,7 +20,7 @@
             android:name=".ui.Details.MealDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.dashboard.MealsListActivity"
+            android:name=".ui.Srearch.MealsListActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,6 +1,6 @@
 package com.example.yummy.ui.Details;
 
-import com.example.yummy.Model.MealDetails;
+import com.example.yummy.Model.Pojos.MealDetails;
 
 import java.util.List;
 

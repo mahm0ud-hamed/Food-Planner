@@ -1,8 +1,8 @@
 package com.example.yummy.ui.home;
 
-import com.example.yummy.Model.Category;
-import com.example.yummy.Model.Meal;
-import com.example.yummy.Model.RandomMeal;
+import com.example.yummy.Model.Pojos.Category;
+import com.example.yummy.Model.Pojos.Meal;
+import com.example.yummy.Model.Pojos.RandomMeal;
 
 import java.util.List;
 

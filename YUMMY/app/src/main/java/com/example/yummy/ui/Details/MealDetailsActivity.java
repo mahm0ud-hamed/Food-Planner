@@ -4,8 +4,10 @@ import static com.example.yummy.ui.home.HomeFragment.MealKey;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,11 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.yummy.Model.MealDetails;
-import com.example.yummy.Network.RemoteDataSource;
+import com.example.yummy.MealPresenter.LocalDataPresenter;
+import com.example.yummy.Model.DataBase.DataBase;
+import com.example.yummy.Model.DataBase.MealDao;
+import com.example.yummy.Model.Pojos.MealDetails;
+import com.example.yummy.Model.Network.RemoteDataSource;
 import com.example.yummy.R;
-import com.example.yummy.RemoteMealPresenter.RemoteDataPresenter;
-import com.example.yummy.ui.dashboard.IngredientAdapter;
+import com.example.yummy.MealPresenter.RemoteDataPresenter;
+import com.example.yummy.ui.Srearch.IngredientAdapter;
 
 import java.util.List;
 
@@ -30,6 +35,10 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
     WebView webViewvideo;
     RecyclerView recyclerView ;
     IngredientAdapter ingredientAdapter ;
+    ImageButton btnAddFav ;
+    LocalDataPresenter localDataPresenter ;
+    MealDetails mealtoInsert ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,7 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         txtMelInstruction = findViewById(R.id.txtInstruction);
         recyclerView = findViewById(R.id.recycViewDetIngred) ;
         webViewvideo = findViewById(R.id.webViewVideo);
+        btnAddFav = findViewById(R.id.btnAddtFav) ;
 
         /*creating layout manager*/
         LinearLayoutManager layoutManager = new LinearLayoutManager(this );
@@ -51,11 +61,23 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         /*request meal from remote data source */
         remoteDataPresenter = new RemoteDataPresenter(RemoteDataSource.getInstance(), this);
         remoteDataPresenter.getRemoteMealDetailsByName(mealName);
+
+        /*creaitng instance from data base */
+        localDataPresenter= new LocalDataPresenter(DataBase.getInstance(this).getMealDAO()) ;
+
+        btnAddFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                localDataPresenter.insertMealToFavorite(mealtoInsert);
+
+            }
+        });
     }
 
     @Override
     public void viewMealDetails(List<MealDetails> mealDetails) {
 
+        mealtoInsert = mealDetails.get(0);
         /*view main detila image */
         Glide.with(this).load(mealDetails.get(0).getStrMealThumb()).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(imgDetMeal);

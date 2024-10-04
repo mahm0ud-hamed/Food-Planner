@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.yummy.Model.Meal;
+import com.example.yummy.Model.Pojos.Meal;
 import com.example.yummy.R;
 import com.example.yummy.ui.Details.onMealClickListener;
 

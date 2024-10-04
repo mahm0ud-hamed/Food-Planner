@@ -16,12 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.yummy.Model.Category;
-import com.example.yummy.Model.Meal;
-import com.example.yummy.Model.RandomMeal;
-import com.example.yummy.Network.RemoteDataSource;
+import com.example.yummy.Model.Pojos.Category;
+import com.example.yummy.Model.Pojos.Meal;
+import com.example.yummy.Model.Pojos.MealDetails;
+import com.example.yummy.Model.Pojos.RandomMeal;
+import com.example.yummy.Model.Network.RemoteDataSource;
 import com.example.yummy.R;
-import com.example.yummy.RemoteMealPresenter.RemoteDataPresenter;
+import com.example.yummy.MealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentHomeBinding;
 import com.example.yummy.ui.Details.MealDetailsActivity;
 import com.example.yummy.ui.Details.onMealClickListener;
@@ -105,6 +106,7 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
                 HomeFragment.this.startActivity(toMealDetailsListIntent);
             }
         });
+
     }
 
     @Override
@@ -142,6 +144,12 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
         Intent toMealDetailsListIntent = new Intent(getContext() , MealDetailsActivity.class) ;
         toMealDetailsListIntent.putExtra(MealKey, MealName) ;
         HomeFragment.this.startActivity(toMealDetailsListIntent);
+    }
+
+    @Override
+    public void onBtnFavouriteCLickListner(MealDetails mealDetails) {
+
+            /*adding random meal to favourite from out of its details*/
     }
 
 }
