@@ -100,6 +100,7 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
                 public void onClick(View view) {
                     if (mealtoInsert.getIsAddedToFavourite() == null || mealtoInsert.getIsAddedToFavourite() == false) {
                         localDataPresenter.insertMealToFavorite(mealtoInsert);
+                        Toast.makeText(MealDetailsActivity.this, "meal added to favourite", Toast.LENGTH_SHORT).show();
                         mealtoInsert.setAddedToFavTrue();
                     } else if (mealtoInsert.getIsAddedToFavourite() == true) {
 
@@ -202,14 +203,10 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
     }
     private void showPlanDaysDialog(){
         MealPlan mealPlan  = new MealPlan(mealtoInsert);
-
-        System.out.println(mealPlan.planDayName);
-        System.out.println(mealPlan.idMeal);
-
         LayoutInflater inflater = getLayoutInflater() ;
         View dialogView = inflater.inflate(R.layout.dialog_day_selection , null) ;
         AlertDialog.Builder builder = new AlertDialog.Builder(this) ;
-        builder.setTitle("select a Day for The Meal ") ;
+        builder.setTitle("Select Day") ;
         builder.setView(dialogView) ;
 
         Button mondayButton = dialogView.findViewById(R.id.button_monday);
@@ -222,30 +219,42 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         saturdayButton.setOnClickListener(View->{
             mealPlan.setPlanDayName(saturDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+saturDay, Toast.LENGTH_SHORT).show();
+
         });
         mondayButton.setOnClickListener(View->{
             mealPlan.setPlanDayName(monDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+monDay, Toast.LENGTH_SHORT).show();
         });
         tuesdayButton.setOnClickListener(View->{
             mealPlan.setPlanDayName(tuesDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+tuesDay, Toast.LENGTH_SHORT).show();
         });
         wednesdayButton.setOnClickListener(View -> {
             mealPlan.setPlanDayName(wednsDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+wednsDay, Toast.LENGTH_SHORT).show();
+
         });
         thursdayButton.setOnClickListener(View->{
             mealPlan.setPlanDayName(thursDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+thursDay, Toast.LENGTH_SHORT).show();
+
         });
         fridayButton.setOnClickListener(View->{
             mealPlan.setPlanDayName(friDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+friDay, Toast.LENGTH_SHORT).show();
+
         });
         sundayButton.setOnClickListener(View ->{
             mealPlan.setPlanDayName(sunDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            Toast.makeText(this, "meal add to "+sunDay, Toast.LENGTH_SHORT).show();
+
         });
         builder.show();
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.yummy.Model.Pojos.MealPlan;
@@ -18,7 +19,7 @@ public interface WeekPlanDao {
      @Query("SELECT * FROM weekPlan_table WHERE planDayName = :DayName")
     LiveData<List<MealPlan>> getMealFromPlanByDay(String DayName) ;
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMealToWeekPlan(MealPlan mealPlan) ;
 
     @Delete

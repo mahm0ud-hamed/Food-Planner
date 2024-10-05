@@ -32,4 +32,7 @@
     <string name="wednsday">Wednsday</string>
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
+    <string name="filtercategory">Fiter by Category</string>
+    <string name="filtercoubrty">Filter by Counrty</string>
+    <string name="filteringreident">Filte by ingredient</string>
 </resources>

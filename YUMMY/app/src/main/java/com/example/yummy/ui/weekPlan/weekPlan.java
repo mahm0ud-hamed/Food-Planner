@@ -7,8 +7,10 @@ import static com.example.yummy.ui.Details.MealDetailsActivity.sunDay;
 import static com.example.yummy.ui.Details.MealDetailsActivity.thursDay;
 import static com.example.yummy.ui.Details.MealDetailsActivity.tuesDay;
 import static com.example.yummy.ui.Details.MealDetailsActivity.wednsDay;
+import static com.example.yummy.ui.home.HomeFragment.MealKey;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.yummy.MealPresenter.LocalDataPresenter;
 import com.example.yummy.Model.DataBase.DataBase;
@@ -30,6 +33,7 @@ import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.Model.Pojos.MealPlan;
 import com.example.yummy.R;
 import com.example.yummy.databinding.FragmentWeekPlanBinding;
+import com.example.yummy.ui.Details.MealDetailsActivity;
 import com.example.yummy.ui.Favourite.FavouriteClickListner;
 
 import java.util.ArrayList;
@@ -206,29 +210,32 @@ public class weekPlan extends Fragment implements planCLickListner {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 localDataPresenter.deleteMealFromWeekPlan(mealPlan);
+                Toast.makeText(getContext(), "Meal removed from week plan", Toast.LENGTH_SHORT).show();
             }
         });
 
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                /* do nothing */
             }
         });
 
-        AlertDialog alertDialog = builder.create() ;
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 
     @Override
     public void removeMealFromPlan(MealPlan mealPlan) {
-
         /* show dialog */
         showAlertDialog(mealPlan);
     }
 
     @Override
     public void showPlanMealDetails(String MealName) {
-
+        /* transaction to the details */
+        Intent toMealDetailsListIntent = new Intent(getContext() , MealDetailsActivity.class) ;
+        toMealDetailsListIntent.putExtra(MealKey, MealName) ;
+        this.startActivity(toMealDetailsListIntent);
     }
 }

@@ -39,9 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
+                android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
-                android:text="@string/categorySearch"
-                android:textColor="#3DA0A7"
+                android:text="@string/filtercategory"
+                android:textColor="#670B89"
                 android:textColorLink="#7E3B3B"
                 android:textSize="20sp"
                 android:textStyle="normal" />
@@ -60,8 +61,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
-                android:text="@string/countrySearch"
-                android:textColor="#3DA0A7"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:text="@string/filtercoubrty"
+                android:textColor="#670B89"
                 android:textSize="20sp"
                 android:textStyle="normal" />
 
@@ -83,8 +85,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
-                android:text="@string/searchIngrediants"
-                android:textColor="#3DA0A7"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:text="@string/filteringreident"
+                android:textColor="#670B89"
                 android:textSize="20sp"
                 android:textStyle="normal" />
 

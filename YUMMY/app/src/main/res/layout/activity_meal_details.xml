@@ -50,8 +50,11 @@
                 android:id="@+id/txtDetMealName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColorLink="#670B89"
+                android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="420dp"
@@ -60,17 +63,20 @@
 
                 <ImageButton
                     android:id="@+id/btnAddToPlan"
-                    android:layout_width="0dp"
+                    android:layout_width="165dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#FFFFFF"
                     app:srcCompat="@drawable/baseline_calendar_month_24" />
 
                 <ImageButton
                     android:id="@+id/btnAddtFav"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/fav" />
+                    android:backgroundTint="#FFFFFF"
+                    app:srcCompat="@drawable/baseline_favorite_border_24" />
 
             </LinearLayout>
 
@@ -78,10 +84,11 @@
                 android:id="@+id/txtInstruction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
                 android:text="@string/instructions"
-                android:textColor="#3DA0A7"
-                android:textSize="20sp" />
+                android:textColor="#BD73E5"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine"
@@ -91,16 +98,18 @@
                 android:layout_marginRight="30dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textColor="#CFC1C1"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
                 android:text="@string/ingredients"
-                android:textColor="#3DA0A7"
-                android:textSize="20sp" />
+                android:textSize="30sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewDetIngred"
@@ -111,11 +120,11 @@
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
                 android:scrollbarSize="@android:dimen/dialog_min_width_major"
                 android:text="@string/mealVideo"
-                android:textColor="#3DA0A7"
-                android:textSize="20sp" />
+                android:textSize="30sp" />
 
             <WebView
                 android:id="@+id/webViewVideo"

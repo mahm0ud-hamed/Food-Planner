@@ -7,44 +7,52 @@
 
     <!-- Day Buttons -->
     <Button
-        android:id="@+id/button_monday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Monday" />
-
-    <Button
-        android:id="@+id/button_tuesday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tuesday" />
-
-    <Button
-        android:id="@+id/button_wednesday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Wednesday" />
-
-    <Button
-        android:id="@+id/button_thursday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thursday" />
-
-    <Button
-        android:id="@+id/button_friday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Friday" />
-
-    <Button
         android:id="@+id/button_saturday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
         android:text="Saturday" />
 
     <Button
         android:id="@+id/button_sunday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
         android:text="Sunday" />
+
+    <Button
+        android:id="@+id/button_monday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
+        android:text="Monday" />
+
+    <Button
+        android:id="@+id/button_tuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
+        android:text="Tuesday" />
+
+    <Button
+        android:id="@+id/button_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
+        android:text="Wednesday" />
+
+    <Button
+        android:id="@+id/button_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
+        android:text="Thursday" />
+
+    <Button
+        android:id="@+id/button_friday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_kanadaka"
+        android:text="Friday" />
+
 </LinearLayout>

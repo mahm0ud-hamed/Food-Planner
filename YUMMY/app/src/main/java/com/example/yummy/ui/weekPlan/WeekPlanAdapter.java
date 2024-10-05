@@ -67,6 +67,9 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.ViewHo
         holder.btnRemovePlan.setOnClickListener((View)->{
             planClickListner.removeMealFromPlan(planMeals.get(position));
         });
+        holder.imgPlanMeal.setOnClickListener((View)->{
+            planClickListner.showPlanMealDetails(planMeals.get(position).getStrMeal());
+        });
     }
 
     public void setPlanMealsList(List<MealPlan> planMeals){
