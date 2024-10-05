@@ -11,7 +11,7 @@ import com.example.yummy.Model.Pojos.MealDetails;
 import java.util.List;
 
 @Dao
-public interface MealDao {
+public interface favouriteDao {
     @Query("SELECT * FROM favourite_table")
     LiveData<List<MealDetails>> getAllFavouriteMeasl() ;
 
@@ -21,5 +21,7 @@ public interface MealDao {
     @Delete
     void deleteMealFromFavourite(MealDetails mealDetails) ;
 
+    @Query("SELECT * FROM favourite_table WHERE strMeal = :mealName LIMIT 1")
+    LiveData<MealDetails> getMealByName(String mealName) ;
 
 }

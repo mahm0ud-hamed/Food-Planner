@@ -71,10 +71,22 @@ public class MealDetails {
     public String strImageSource;
     public String strCreativeCommonsConfirmed;
     public String dateModified;
+    public Boolean isAddedToFavourite ;
 
     public String getIdMeal() {
         return idMeal;
     }
+
+    public Boolean getIsAddedToFavourite() {
+        return isAddedToFavourite;
+    }
+    public void setAddedToFavTrue(){
+        isAddedToFavourite =true ;
+    }
+    public  void setIsAddedToFavFalse(){
+        isAddedToFavourite =false ;
+    }
+
 
     public MealDetails(String idMeal, String strMeal, String strDrinkAlternate, String strCategory, String strArea,
                        String strInstructions, String strMealThumb, String strTags, String strYoutube, String strIngredient1,
@@ -140,6 +152,63 @@ public class MealDetails {
         this.strImageSource = strImageSource;
         this.strCreativeCommonsConfirmed = strCreativeCommonsConfirmed;
         this.dateModified = dateModified;
+    }
+
+    /*copy Constructor*/
+    public MealDetails (MealDetails mealDetails){
+        this.idMeal = mealDetails.idMeal;
+        this.strMeal = mealDetails.strMeal;
+        this.strDrinkAlternate = mealDetails.strDrinkAlternate;
+        this.strCategory = mealDetails.strCategory;
+        this.strArea = mealDetails.strArea;
+        this.strInstructions =mealDetails. strInstructions;
+        this.strMealThumb = mealDetails.strMealThumb;
+        this.strTags = mealDetails.strTags;
+        this.strYoutube =mealDetails.strYoutube;
+        this.strIngredient1 =mealDetails.strIngredient1;
+        this.strIngredient2 = mealDetails.strIngredient2;
+        this.strIngredient3 = mealDetails.strIngredient3;
+        this.strIngredient4 = mealDetails.strIngredient4;
+        this.strIngredient5 = mealDetails.strIngredient5;
+        this.strIngredient6 = mealDetails.strIngredient6;
+        this.strIngredient7 = mealDetails.strIngredient7;
+        this.strIngredient8 = mealDetails.strIngredient8;
+        this.strIngredient9 = mealDetails.strIngredient9;
+        this.strIngredient10 = mealDetails.strIngredient10;
+        this.strIngredient11 = mealDetails.strIngredient11;
+        this.strIngredient12 = mealDetails.strIngredient12;
+        this.strIngredient13 = mealDetails.strIngredient13;
+        this.strIngredient14 = mealDetails.strIngredient14;
+        this.strIngredient15 = mealDetails.strIngredient15;
+        this.strIngredient16 = mealDetails.strIngredient16;
+        this.strIngredient17 = mealDetails.strIngredient17;
+        this.strIngredient18 = mealDetails.strIngredient18;
+        this.strIngredient19 = mealDetails.strIngredient19;
+        this.strIngredient20 = mealDetails.strIngredient20;
+        this.strMeasure1 = mealDetails.strMeasure1;
+        this.strMeasure2 = mealDetails.strMeasure2;
+        this.strMeasure3 = mealDetails.strMeasure3;
+        this.strMeasure4 = mealDetails.strMeasure4;
+        this.strMeasure5 = mealDetails.strMeasure5;
+        this.strMeasure6 = mealDetails.strMeasure6;
+        this.strMeasure7 = mealDetails.strMeasure7;
+        this.strMeasure8 = mealDetails.strMeasure8;
+        this.strMeasure9 = mealDetails.strMeasure9;
+        this.strMeasure10 = mealDetails.strMeasure10;
+        this.strMeasure11 = mealDetails.strMeasure11;
+        this.strMeasure12 = mealDetails.strMeasure12;
+        this.strMeasure13 = mealDetails.strMeasure13;
+        this.strMeasure14 = mealDetails.strMeasure14;
+        this.strMeasure15 = mealDetails.strMeasure15;
+        this.strMeasure16 = mealDetails.strMeasure16;
+        this.strMeasure17 = mealDetails.strMeasure17;
+        this.strMeasure18 = mealDetails.strMeasure18;
+        this.strMeasure19 = mealDetails.strMeasure19;
+        this.strMeasure20 = mealDetails.strMeasure20;
+        this.strSource = mealDetails.strSource;
+        this.strImageSource = mealDetails.strImageSource;
+        this.strCreativeCommonsConfirmed = mealDetails.strCreativeCommonsConfirmed;
+        this.dateModified = mealDetails.dateModified;
     }
 
     public String getStrMeal() {

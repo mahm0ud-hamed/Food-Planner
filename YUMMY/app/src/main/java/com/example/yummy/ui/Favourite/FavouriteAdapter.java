@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.R;
-import com.example.yummy.ui.home.HomeCountryAdapter;
 
 import java.util.List;
 
@@ -24,10 +22,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
 
     private Context context ;
     private List<MealDetails> mealDetails ;
+    FavouriteClickListner favouriteClickListner;
 
-    public FavouriteAdapter (Context context , List<MealDetails> mealDetails){
+    public FavouriteAdapter (Context context , List<MealDetails> mealDetails , FavouriteClickListner favouriteClickListner){
         this.context = context ;
         this.mealDetails = mealDetails ;
+        this.favouriteClickListner = favouriteClickListner;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -63,7 +63,18 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         Glide.with(context).load(mealDetails.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(holder.imgFavMeal);
-
+        holder.btnRemoveFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favouriteClickListner.removeFavouriteMeal(mealDetails.get(0));
+            }
+        });
+        holder.imgFavMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favouriteClickListner.showFavouriteMealDetails(mealDetails.get(0).getStrMeal());
+            }
+        });
     }
 
     public void setFavMealList(List<MealDetails> mealDetails){

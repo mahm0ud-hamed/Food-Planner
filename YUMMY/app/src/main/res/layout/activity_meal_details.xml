@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".ui.Details.MealDetailsActivity">
 
     <ScrollView
@@ -58,7 +59,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnAddToCalnd"
+                    android:id="@+id/btnAddToPlan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

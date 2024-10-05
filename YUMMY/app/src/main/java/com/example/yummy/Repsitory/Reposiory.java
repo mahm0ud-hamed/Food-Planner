@@ -1,11 +1,15 @@
 package com.example.yummy.Repsitory;
 
+import android.widget.ThemedSpinnerAdapter;
+
 import androidx.lifecycle.LiveData;
 
-import com.example.yummy.Model.DataBase.MealDao;
+import com.example.yummy.Model.DataBase.WeekPlanDao;
+import com.example.yummy.Model.DataBase.favouriteDao;
 import com.example.yummy.Model.Network.RemoteDataSource;
 import com.example.yummy.Model.Network.NetWorkCallBack;
 import com.example.yummy.Model.Pojos.MealDetails;
+import com.example.yummy.Model.Pojos.MealPlan;
 
 import java.util.List;
 
@@ -64,23 +68,52 @@ public class Reposiory implements IRepository {
     }
 
     @Override
-    public LiveData<List<MealDetails>> getAllFavouriteMeals(MealDao mealDAO) {
-        return mealDAO.getAllFavouriteMeasl() ;
+    public LiveData<List<MealDetails>> getAllFavouriteMeals(favouriteDao favouriteDAO) {
+        return favouriteDAO.getAllFavouriteMeasl() ;
     }
 
     @Override
-    public void deleteFavouriteMeal(MealDao mealDAO, MealDetails mealDetails) {
+    public void deleteFavouriteMeal(favouriteDao favouriteDAO, MealDetails mealDetails) {
 
        new Thread(()->{
-            mealDAO.deleteMealFromFavourite(mealDetails);
+            favouriteDAO.deleteMealFromFavourite(mealDetails);
         }).start();
     }
 
     @Override
-    public void insertMealToFavourite(MealDao mealDAO, MealDetails mealDetails) {
+    public void insertMealToFavourite(favouriteDao favouriteDAO, MealDetails mealDetails) {
         new Thread(()->{
-            mealDAO.insertMealToFavourite(mealDetails);
+            favouriteDAO.insertMealToFavourite(mealDetails);
         }).start();
+    }
+
+    @Override
+    public LiveData<MealDetails> getfavouriteMealByname(favouriteDao favouriteDao, String mealName) {
+       return favouriteDao.getMealByName(mealName);
+    }
+
+    @Override
+    public LiveData<List<MealPlan>> getAllPlanMeals(WeekPlanDao weekPlanDao) {
+        return weekPlanDao.getAllWeekPlanMeals();
+    }
+
+    @Override
+    public LiveData<List<MealPlan>> getPlanMealsByDay(WeekPlanDao weekPlanDao, String dayName) {
+        return weekPlanDao.getMealFromPlanByDay(dayName);
+    }
+
+    @Override
+    public void deleteMealFromWeekPlan(WeekPlanDao weekPlanDao, MealPlan mealPlan) {
+       new Thread(()->{
+           weekPlanDao.deleteMealFromWeekPlan(mealPlan);
+       }).start();
+    }
+
+    @Override
+    public void insetMealToWeekPlan(WeekPlanDao weekPlanDao, MealPlan mealPlan) {
+       new Thread(()->{
+           weekPlanDao.insertMealToWeekPlan(mealPlan);
+       }).start();
     }
 
 }
