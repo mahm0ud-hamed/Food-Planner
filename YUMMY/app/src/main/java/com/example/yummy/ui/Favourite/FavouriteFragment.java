@@ -36,8 +36,8 @@ public class FavouriteFragment extends Fragment implements FavouriteClickListner
     private RecyclerView recyclerView ;
     private ILocalDataPresenter localDataPresenter;
     FavouriteAdapter favouriteAdapter ;
-    favouriteDao dao ;
-    Observer<List<MealDetails>> observer;
+    private Observer<List<MealDetails>> observer;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavouriteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -15,7 +15,7 @@ public interface WeekPlanDao {
     @Query("SELECT * FROM weekPlan_table")
     LiveData<List<MealPlan>> getAllWeekPlanMeals() ;
 
-     @Query("SELECT * FROM weekPlan_table WHERE planDayName = :DayName LIMIT 1")
+     @Query("SELECT * FROM weekPlan_table WHERE planDayName = :DayName")
     LiveData<List<MealPlan>> getMealFromPlanByDay(String DayName) ;
 
     @Insert

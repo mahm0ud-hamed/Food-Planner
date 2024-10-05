@@ -11,6 +11,8 @@ import java.util.List;
 
 @Entity(tableName = "favourite_table")
 public class MealDetails {
+
+    public MealDetails(){}
     @PrimaryKey
     @NonNull
     public String idMeal;

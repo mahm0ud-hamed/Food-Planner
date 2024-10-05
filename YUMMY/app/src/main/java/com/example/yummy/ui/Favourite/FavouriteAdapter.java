@@ -30,6 +30,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         this.favouriteClickListner = favouriteClickListner;
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imgFavMeal;
         TextView txtFavMealName;
@@ -63,6 +64,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         Glide.with(context).load(mealDetails.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(holder.imgFavMeal);
+
         holder.btnRemoveFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +82,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     public void setFavMealList(List<MealDetails> mealDetails){
         this.mealDetails = mealDetails;
     }
+
+
     @Override
     public int getItemCount() {
         return mealDetails.size();

@@ -15,5 +15,9 @@
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/favorite_border_24"
         android:title="@string/favourite" />
+    <item
+        android:id="@+id/weekPlanFrag"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="@string/navigation_plan" />
 
 </menu>

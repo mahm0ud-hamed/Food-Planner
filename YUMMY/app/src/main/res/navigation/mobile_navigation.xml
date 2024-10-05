@@ -14,12 +14,17 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.yummy.ui.Srearch.SearchFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/search_"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.yummy.ui.Favourite.FavouriteFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/favourite"
         tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/weekPlanFrag"
+        android:name="com.example.yummy.ui.weekPlan.weekPlan"
+        android:label="@string/plan"
+        tools:layout="@layout/fragment_week_plan" />
 </navigation>

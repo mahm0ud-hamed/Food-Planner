@@ -50,6 +50,7 @@ public class LocalDataPresenter implements ILocalDataPresenter{
 
     @Override
     public LiveData<List<MealPlan>> getMealsFromPlanByDay(String dayName) {
+
         return new Reposiory().getPlanMealsByDay(weekPlanDao , dayName);
     }
 

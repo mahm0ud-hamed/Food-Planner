@@ -53,7 +53,13 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
     private LocalDataPresenter weekPlanPresenter ;
     private MealDetails mealtoInsert;
     private Observer<MealDetails> observer;
-
+    public static final String saturDay="saturday";
+    public static final String sunDay="sunday";
+    public static final String monDay="monday";
+    public static final String tuesDay="tuesday";
+    public static final String wednsDay=" wednesday";
+    public static final String thursDay="thursday";
+    public static final String friDay="friday";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,31 +220,31 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         Button saturdayButton = dialogView.findViewById(R.id.button_saturday);
         Button sundayButton = dialogView.findViewById(R.id.button_sunday);
         saturdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName("saturday");
+            mealPlan.setPlanDayName(saturDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         mondayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName("monday");
+            mealPlan.setPlanDayName(monDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         tuesdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName("tuesday");
+            mealPlan.setPlanDayName(tuesDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         wednesdayButton.setOnClickListener(View -> {
-            mealPlan.setPlanDayName(" wednesday");
+            mealPlan.setPlanDayName(wednsDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         thursdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName("thursday");
+            mealPlan.setPlanDayName(thursDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         fridayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName("friday");
+            mealPlan.setPlanDayName(friDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         sundayButton.setOnClickListener(View ->{
-            mealPlan.setPlanDayName("sunday");
+            mealPlan.setPlanDayName(sunDay);
             weekPlanPresenter.insertMealToWeekPlan(mealPlan);
         });
         builder.show();
