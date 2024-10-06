@@ -52,15 +52,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, int position) {
-        if ((position % 2) == 0) {
+
             Glide.with(context).load(categories.get(position).getStrCategoryThumb())
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage);
-        } else {
-//            Glide.with(context).load(categories.get(position).getStrCategoryThumb())
-//                    .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
-//                    .error(R.drawable.ic_launcher_foreground).into(holder.categoryImage2);
-        }
 
         holder.categoryImage.setOnClickListener(new View.OnClickListener() {
             @Override

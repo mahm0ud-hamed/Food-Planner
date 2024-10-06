@@ -17,6 +17,7 @@ import com.example.yummy.Model.Pojos.Ingredient;
 import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.ViewHolder> {
@@ -35,7 +36,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     }
     public IngredientAdapter(Context context , View recycleView , List<MealDetails> mealDetails){
         this.context = context ;
-//        this.ingredientNames =  new ArrayList<>();
+      // this.ingredientNames =  new ArrayList<>();
         this.ingredientNames = mealDetails.get(0).getAllIngredientNames() ;
         this.ingredientMeasure = mealDetails.get(0).getAllIngredientAmount() ;
     }
@@ -44,7 +45,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
         TextView txt ;
         public ViewHolder(@NonNull View IngerdCard) {
             super(IngerdCard);
-
             ImageIngerd = IngerdCard.findViewById(R.id.srchImage) ;
             txt = IngerdCard.findViewById(R.id.txtOnImg);
         }
@@ -61,7 +61,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull IngredientAdapter.ViewHolder holder, int position) {
         if (ingredients != null) {
-            Glide.with(context).load("https://www.themealdb.com/images/ingredients/" + ingredients.get(position).getStrIngredient().toString() + ".png")
+            Glide.with(context).load("https://www.themealdb.com/images/ingredients/" + ingredients.get(position).getStrIngredient() + ".png")
                     .apply(new RequestOptions().override(250, 200)).placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_foreground).into(holder.ImageIngerd);
 

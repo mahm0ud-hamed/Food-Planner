@@ -91,7 +91,7 @@ public class SearchFragment extends Fragment implements ISearchView , OnClickLis
         linearLayoutManagerIngredient.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         srchcIngrdRcycView.setLayoutManager(linearLayoutManagerIngredient);
-        ingredientAdapter= new IngredientAdapter(getContext(), srchcIngrdRcycView, new ArrayList<Ingredient>() , this.onClickListner) ;
+        ingredientAdapter= new IngredientAdapter(getContext(), srchcIngrdRcycView, new ArrayList<Ingredient>() , this) ;
         srchcIngrdRcycView.setAdapter(ingredientAdapter);
 
 
