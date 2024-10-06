@@ -1,5 +1,7 @@
 package com.example.yummy.ui.Srearch;
 
+import static com.example.yummy.ui.home.HomeFragment.MealKey;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,16 +21,20 @@ import com.example.yummy.Model.Pojos.Counrty;
 import com.example.yummy.Model.Pojos.Meal;
 import com.example.yummy.Model.Pojos.Ingredient;
 import com.example.yummy.Model.Network.RemoteDataSource;
+import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.R;
 import com.example.yummy.MealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentSearchBinding;
+import com.example.yummy.ui.Details.MealDetailsActivity;
+import com.example.yummy.ui.Details.onMealClickListener;
+import com.example.yummy.ui.home.HomeFragment;
 
 import android.widget.SearchView.OnQueryTextListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchFragment extends Fragment implements ISearchView , OnClickListner{
+public class SearchFragment extends Fragment implements ISearchView , OnClickListner , onMealClickListener {
     public static final  String counrtyKey = "CountytyName" ;
     public static final String categoryKey = "CatrgotyName";
     public static  final  String ingredientKey = "IngredientName" ;
@@ -94,7 +100,7 @@ public class SearchFragment extends Fragment implements ISearchView , OnClickLis
         verticalLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerViewSrchCateg.setLayoutManager(verticalLayoutManager);
 
-        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<Meal>());
+        filterMealAdapter = new FilterMealAdapter(getContext(), recycViewMealOnClick, new ArrayList<Meal>(),this);
 
 
     }
@@ -184,8 +190,6 @@ public class SearchFragment extends Fragment implements ISearchView , OnClickLis
 
 
 
-
-
     private void HideWithoutSearchBar(){
         binding.srchcCountyRcycView.setVisibility(View.INVISIBLE);
         binding.srchcCtegRcycView.setVisibility(View.VISIBLE);
@@ -196,4 +200,15 @@ public class SearchFragment extends Fragment implements ISearchView , OnClickLis
 //        binding.recycViewMealOnClick.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void onMealClick(String MealName) {
+        Intent toMealDetailsListIntent = new Intent(getContext() , MealDetailsActivity.class) ;
+        toMealDetailsListIntent.putExtra(MealKey, MealName) ;
+        SearchFragment.this.startActivity(toMealDetailsListIntent);
+    }
+
+    @Override
+    public void onBtnFavouriteCLickListner(MealDetails mealDetails) {
+
+    }
 }
