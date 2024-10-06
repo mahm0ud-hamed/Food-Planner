@@ -28,7 +28,7 @@
             android:name=".ui.Srearch.MealsListActivity"
             android:exported="false" />
         <activity
-            android:name= ".LotteActivity"
+            android:name= ".ui.Splash.LotteActivity"
             android:exported="true"
           >
             <intent-filter>

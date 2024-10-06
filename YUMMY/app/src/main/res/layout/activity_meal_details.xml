@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:text="TextView"
                 android:textColorLink="#670B89"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="420dp"
@@ -87,8 +87,7 @@
                 android:fontFamily="@font/akaya_kanadaka"
                 android:gravity="center"
                 android:text="@string/instructions"
-                android:textColor="#BD73E5"
-                android:textSize="30sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine"

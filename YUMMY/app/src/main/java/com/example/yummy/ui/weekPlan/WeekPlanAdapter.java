@@ -57,8 +57,6 @@ public class WeekPlanAdapter extends RecyclerView.Adapter<WeekPlanAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull WeekPlanAdapter.ViewHolder holder, int position) {
         holder.txtPlanMealName.setText(planMeals.get(position).getStrMeal());
-        System.out.println("the meal name is "+planMeals.get(position).getStrMeal());
-        System.out.println("the meal day is "+planMeals.get(position).getPlanDayName());
 
         Glide.with(context).load((planMeals.get(position).getStrMealThumb()))
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)

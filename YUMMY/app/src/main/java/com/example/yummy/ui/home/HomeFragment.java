@@ -1,5 +1,7 @@
 package com.example.yummy.ui.home;
 
+import static com.example.yummy.ui.Srearch.SearchFragment.ingredientKey;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,11 +28,13 @@ import com.example.yummy.MealPresenter.RemoteDataPresenter;
 import com.example.yummy.databinding.FragmentHomeBinding;
 import com.example.yummy.ui.Details.MealDetailsActivity;
 import com.example.yummy.ui.Details.onMealClickListener;
+import com.example.yummy.ui.Srearch.MealsListActivity;
+import com.example.yummy.ui.Srearch.SearchFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements IHomeView , onMealClickListener {
+public class HomeFragment extends Fragment implements IHomeView , onMealClickListener ,onCategoryClickListner {
     public static final String MealKey= "mealNmae" ;
     private FragmentHomeBinding binding;
     ImageView imgRandoMeal;
@@ -79,7 +83,7 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
         linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
         recyclViewCateg.setLayoutManager(linearLayoutManager1);
 
-        categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(),  recyclViewCateg,  new ArrayList<Category>()) ;
+        categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(),  recyclViewCateg,  new ArrayList<Category>() ,this) ;
         recyclViewCateg.setAdapter(categoryAdapter);
 
 
@@ -152,4 +156,11 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
             /*adding random meal to favourite from out of its details*/
     }
 
+    @Override
+    public void onIngerdientClick(String ingredientName) {
+        Intent toMealsListIntent = new Intent(getContext() , MealsListActivity.class) ;
+        toMealsListIntent.putExtra(ingredientKey, ingredientName) ;
+        HomeFragment.this.startActivity(toMealsListIntent);
+
+    }
 }

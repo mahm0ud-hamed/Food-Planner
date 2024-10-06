@@ -60,7 +60,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.txtFavMealName.setText(mealDetails.get(0).getStrMeal());
+        holder.txtFavMealName.setText(mealDetails.get(position).getStrMeal());
         Glide.with(context).load(mealDetails.get(position).getStrMealThumb())
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(holder.imgFavMeal);
@@ -68,13 +68,13 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
         holder.btnRemoveFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                favouriteClickListner.removeFavouriteMeal(mealDetails.get(0));
+                favouriteClickListner.removeFavouriteMeal(mealDetails.get(position));
             }
         });
         holder.imgFavMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                favouriteClickListner.showFavouriteMealDetails(mealDetails.get(0).getStrMeal());
+                favouriteClickListner.showFavouriteMealDetails(mealDetails.get(position).getStrMeal());
             }
         });
     }

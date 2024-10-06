@@ -1,4 +1,4 @@
-package com.example.yummy;
+package com.example.yummy.ui.Splash;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.yummy.MainActivity;
+import com.example.yummy.R;
 import com.example.yummy.databinding.ActivityLotteBinding;
 
 public class LotteActivity extends AppCompatActivity {

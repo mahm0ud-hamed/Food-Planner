@@ -79,7 +79,6 @@ public class FavouriteFragment extends Fragment implements FavouriteClickListner
 
     @Override
     public void removeFavouriteMeal(MealDetails mealDetails) {
-        System.out.println("heallo mahmoudhamed");
         showAlertDialog(mealDetails);
     }
 

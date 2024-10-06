@@ -21,9 +21,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     List<Category> categories ;
     Context context;
-    public CategoryAdapter(Context context , View view , List<Category > categories){
+    onCategoryClickListner onCategoryClickListner ;
+    public CategoryAdapter(Context context , View view , List<Category > categories , onCategoryClickListner onCategoryClickListner){
         this.categories = categories ;
         this.context= context ;
+        this.onCategoryClickListner = onCategoryClickListner ;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -54,6 +56,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .apply(new RequestOptions().override(250 , 200 )).placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground).into(viewHolder.imgCateg);
 
+        viewHolder.imgCateg.setOnClickListener((View)->{
+            this.onCategoryClickListner.onIngerdientClick(categories.get(position).getStrCategory());
+        });
     }
 
     public void setCategoriesList(List<Category> categories){

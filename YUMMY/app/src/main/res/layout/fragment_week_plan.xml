@@ -20,7 +20,10 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/saturday" />
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/saturday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewSatDay"
@@ -31,7 +34,11 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sunday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/sunday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewSunDay"
@@ -42,7 +49,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/monday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/monday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewMonDay"
@@ -53,7 +64,11 @@
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tuseday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/tuseday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewTusDay"
@@ -64,7 +79,11 @@
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/wednsday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/wednsday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycVieWedDay"
@@ -75,7 +94,11 @@
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/thursday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/thursday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewThuDay"
@@ -86,7 +109,11 @@
                 android:id="@+id/textView17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/friday" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:gravity="center"
+                android:text="@string/friday"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycViewFriDay"
