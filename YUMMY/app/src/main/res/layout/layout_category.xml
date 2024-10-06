@@ -32,35 +32,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/textCateg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="140dp"
-                android:padding="5dp"
-                android:shadowRadius="2"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@+id/imgCateg"
-                tools:layout_editor_absoluteX="0dp"
-                tools:text="Components" />
-
-            <ImageButton
-                android:id="@+id/btnFavorite"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="9dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="Favorite"
-                android:scaleType="fitXY"
-                android:src="@drawable/favorite_border_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textCateg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:padding="5dp"
+            android:shadowRadius="2"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Components" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

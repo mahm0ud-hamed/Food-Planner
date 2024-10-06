@@ -56,30 +56,6 @@
                 android:scrollbars="none" />
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/akaya_kanadaka"
-                android:text="@string/filtercoubrty"
-                android:textColor="#670B89"
-                android:textSize="20sp"
-                android:textStyle="normal" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/srchcCountyRcycView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:paddingHorizontal="10dp"
-                android:paddingStart="10dp"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
-                android:paddingRight="10dp" />
-
-            <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,6 +72,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/akaya_kanadaka"
+                android:text="@string/filtercoubrty"
+                android:textColor="#670B89"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/srchcCountyRcycView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:paddingHorizontal="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp" />
 
         </LinearLayout>
     </ScrollView>

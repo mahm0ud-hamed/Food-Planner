@@ -89,43 +89,6 @@
                         tools:text="Components" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#30000000">
-
-                    <ImageButton
-                        android:id="@+id/btnFavorite"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginEnd="9dp"
-                        android:layout_marginBottom="9dp"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="Favorite"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/favorite_border_24" />
-
-                    <TextView
-                        android:id="@+id/plane_btn"
-                        style="@style/CardView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignTop="@+id/btnFavorite"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginLeft="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableStart="@drawable/baseline_calendar_month_24"
-                        android:gravity="center"
-                        android:text="Add To Your Plan"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
