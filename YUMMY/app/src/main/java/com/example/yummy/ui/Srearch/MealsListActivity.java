@@ -34,6 +34,7 @@ public class MealsListActivity extends AppCompatActivity implements IMealsListVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals_list);
+        getSupportActionBar().hide();
         Intent intent = getIntent() ;
         recyclerView = findViewById(R.id.mealsListRecycView) ;
         remoteDataPresenter =new RemoteDataPresenter(RemoteDataSource.getInstance(),this) ;

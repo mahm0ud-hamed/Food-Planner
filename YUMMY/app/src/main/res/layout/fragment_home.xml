@@ -35,7 +35,7 @@
             android:gravity="center"
             android:text="@string/random_inspiration"
             android:textColor="#670B89"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textStyle="normal" />
 
         <androidx.cardview.widget.CardView

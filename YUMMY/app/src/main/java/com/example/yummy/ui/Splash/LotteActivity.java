@@ -24,7 +24,7 @@ public class LotteActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         binding = ActivityLotteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        getSupportActionBar().hide();
         LottieAnimationView lottieAnimationView = findViewById(R.id.mylotte);
         lottieAnimationView.setAnimation(R.raw.annimation);
         lottieAnimationView.setRepeatCount(0);
