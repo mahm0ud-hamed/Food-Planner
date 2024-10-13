@@ -1,6 +1,7 @@
 package com.example.yummy.ui.Favourite;
 
 import static com.example.yummy.ui.home.HomeFragment.MealKey;
+import static com.example.yummy.ui.weekPlan.weekPlan.fromSrc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,6 +42,7 @@ public class FavouriteFragment extends Fragment implements FavouriteClickListner
     private ILocalDataPresenter localDataPresenter;
     FavouriteAdapter favouriteAdapter;
     private Observer<List<MealDetails>> observer;
+    public static final String fromFav = "FromFav" ;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFavouriteBinding.inflate(inflater, container, false);
@@ -86,6 +88,7 @@ public class FavouriteFragment extends Fragment implements FavouriteClickListner
     public void showFavouriteMealDetails(String MealName) {
         Intent toMealDetailsListIntent = new Intent(getContext(), MealDetailsActivity.class);
         toMealDetailsListIntent.putExtra(MealKey, MealName);
+        toMealDetailsListIntent.putExtra(fromSrc , "fav") ;
         this.startActivity(toMealDetailsListIntent);
     }
 

@@ -1,7 +1,10 @@
 package com.example.yummy.ui.Details;
 
+import static com.example.yummy.ui.Favourite.FavouriteFragment.fromFav;
 import static com.example.yummy.ui.home.HomeFragment.MealKey;
+import static com.example.yummy.ui.weekPlan.weekPlan.fromSrc;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,18 +29,20 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.utils.Utils;
 import com.bumptech.glide.Glide;
 import com.example.yummy.MealPresenter.LocalDataPresenter;
 import com.example.yummy.Model.DataBase.DataBase;
-import com.example.yummy.Model.DataBase.WeekPlanDao;
 import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.Model.Network.RemoteDataSource;
 import com.example.yummy.Model.Pojos.MealPlan;
 import com.example.yummy.R;
 import com.example.yummy.MealPresenter.RemoteDataPresenter;
 import com.example.yummy.ui.Srearch.IngredientAdapter;
+import com.example.yummy.utils.Uitlity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MealDetailsActivity extends AppCompatActivity implements IMealDetail {
@@ -50,24 +56,19 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
     private ImageButton btnAddFav;
     private ImageButton btnAddPlan;
     private LocalDataPresenter localDataPresenter;
-    private LocalDataPresenter weekPlanPresenter ;
+    private LocalDataPresenter weekPlanPresenter;
     private MealDetails mealtoInsert;
     private Observer<MealDetails> observer;
-    public static final String saturDay="saturday";
-    public static final String sunDay="sunday";
-    public static final String monDay="monday";
-    public static final String tuesDay="tuesday";
-    public static final String wednsDay=" wednesday";
-    public static final String thursDay="thursday";
-    public static final String friDay="friday";
+    private DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_details);
+        getSupportActionBar().hide();
         /*Receving data from intent */
         Intent intent = getIntent();
-        String mealName = intent.getStringExtra(MealKey).toString();
+        String mealName = intent.getStringExtra(MealKey);
 
         /*refrence on all UI objects */
         imgDetMeal = findViewById(R.id.imgDetMeal);
@@ -76,7 +77,7 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         recyclerView = findViewById(R.id.recycViewDetIngred);
         webViewvideo = findViewById(R.id.webViewVideo);
         btnAddFav = findViewById(R.id.btnAddtFav);
-        btnAddPlan = findViewById(R.id.btnAddToPlan) ;
+        btnAddPlan = findViewById(R.id.btnAddToPlan);
 
         /*creating layout manager to show all ingreident over an recycler view */
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -85,55 +86,71 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
 
         /*creaitng instance from data base */
         localDataPresenter = new LocalDataPresenter(DataBase.getInstance(this).getMealDAO());
-        weekPlanPresenter = new LocalDataPresenter(DataBase.getInstance(this).getWeekPlanDao()) ;
+        weekPlanPresenter = new LocalDataPresenter(DataBase.getInstance(this).getWeekPlanDao());
 
         /*if internet is connected will fetch meal from remote data source*/
-        if (isInternetConnected()) {
-            Toast.makeText(this, "InterNet is connected", Toast.LENGTH_SHORT).show();
+        if (Uitlity.isInternetConnected(getApplicationContext())) {
             /*request meal from remote data source */
             remoteDataPresenter = new RemoteDataPresenter(RemoteDataSource.getInstance(), this);
             remoteDataPresenter.getRemoteMealDetailsByName(mealName);
             /*change add to favourite button based on is meal is added to favourite or not */
 
-            btnAddFav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mealtoInsert.getIsAddedToFavourite() == null || mealtoInsert.getIsAddedToFavourite() == false) {
-                        localDataPresenter.insertMealToFavorite(mealtoInsert);
-                        Toast.makeText(MealDetailsActivity.this, "meal added to favourite", Toast.LENGTH_SHORT).show();
-                        mealtoInsert.setAddedToFavTrue();
-                    } else if (mealtoInsert.getIsAddedToFavourite() == true) {
+            btnAddFav.setOnClickListener((View) -> {
+                if (mealtoInsert.getIsAddedToFavourite() == null || mealtoInsert.getIsAddedToFavourite() == false) {
+                    localDataPresenter.insertMealToFavorite(mealtoInsert);
+                    Toast.makeText(MealDetailsActivity.this, "meal added to favourite", Toast.LENGTH_SHORT).show();
+                    mealtoInsert.setAddedToFavTrue();
+                } else if (mealtoInsert.getIsAddedToFavourite() == true) {
 
-                        localDataPresenter.deleteMealFromFavourite(mealtoInsert);
-                        mealtoInsert.setIsAddedToFavFalse();
-                    }
-
+                    localDataPresenter.deleteMealFromFavourite(mealtoInsert);
+                    mealtoInsert.setIsAddedToFavFalse();
                 }
             });
         } else {
-            /*if internet is not connected will fetch meal from DATA BASE */
-            Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
-            LiveData<MealDetails> liveData = localDataPresenter.getFavouriteMealByName(mealName);
-            observer = new Observer<MealDetails>() {
-                @Override
-                public void onChanged(MealDetails mealDetails) {
-                    /*put meal details to List to use same View meal details funtion taht require an array list of meal details*/
-                    List<MealDetails> localMeal = new ArrayList<>();
-                    if (mealDetails != null) {
-                        localMeal.add(mealDetails);
-                        viewMealDetails(localMeal);
+            String comeFrom = intent.getStringExtra(fromSrc) ;
+            if("fav".equals(comeFrom)) {
+                /*if internet is not connected will fetch meal from DATA BASE */
+                Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
+                LiveData<MealDetails> liveData = localDataPresenter.getFavouriteMealByName(mealName);
+                observer = new Observer<MealDetails>() {
+                    @Override
+                    public void onChanged(MealDetails mealDetails) {
+                        /*put meal details to List to use same View meal details funtion taht require an array list of meal details*/
+                        List<MealDetails> localMeal = new ArrayList<>();
+                        if (mealDetails != null) {
+                            localMeal.add(mealDetails);
+                            viewMealDetails(localMeal);
+                        }
+
                     }
+                };
+                liveData.observe(this, observer);
+            }
+            else if ("plan".equals(comeFrom)){
+                /*if internet is not connected will fetch meal from DATA BASE */
+                Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
+                LiveData<MealDetails> liveData = localDataPresenter.get(mealName);
+                observer = new Observer<MealDetails>() {
+                    @Override
+                    public void onChanged(MealDetails mealDetails) {
+                        /*put meal details to List to use same View meal details funtion taht require an array list of meal details*/
+                        List<MealDetails> localMeal = new ArrayList<>();
+                        if (mealDetails != null) {
+                            localMeal.add(mealDetails);
+                            viewMealDetails(localMeal);
+                        }
 
-                }
-            };
-            liveData.observe(this, observer);
-
+                    }
+                };
+                liveData.observe(this, observer);
+            }
         }
 
         btnAddPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPlanDaysDialog();
+                // showPlanDaysDialog();
+                showCalenderDialog();
             }
         });
     }
@@ -169,7 +186,6 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
 
             String videoId = videoURL.substring(videoURL.lastIndexOf('=') + 1);
             String embedUrl = "https://www.youtube.com/embed/" + videoId;
-            System.out.println(embedUrl);
 
             webViewvideo.getSettings().setJavaScriptEnabled(true);
             webViewvideo.getSettings().setDomStorageEnabled(true);
@@ -180,83 +196,31 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         }
     }
 
-    /*chehcking if the network in connecting or not */
-    private Boolean isInternetConnected() {
-        Boolean internetStatus = false;
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
-                internetStatus = capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
-            } else {
-                NetworkInfo activeNetWork = connectivityManager.getActiveNetworkInfo();
-                internetStatus = activeNetWork != null && activeNetWork.isConnectedOrConnecting();
-            }
-        }
-        return internetStatus;
-    }
+
 
     private void changeFavButtonIMG(MealDetails mealDetails) {
 
         btnAddFav.setImageDrawable(getResources().getDrawable(R.drawable.delete_fav));
 
     }
-    private void showPlanDaysDialog(){
-        MealPlan mealPlan  = new MealPlan(mealtoInsert);
-        LayoutInflater inflater = getLayoutInflater() ;
-        View dialogView = inflater.inflate(R.layout.dialog_day_selection , null) ;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this) ;
-        builder.setTitle("Select Day") ;
-        builder.setView(dialogView) ;
 
-        Button mondayButton = dialogView.findViewById(R.id.button_monday);
-        Button tuesdayButton = dialogView.findViewById(R.id.button_tuesday);
-        Button wednesdayButton = dialogView.findViewById(R.id.button_wednesday);
-        Button thursdayButton = dialogView.findViewById(R.id.button_thursday);
-        Button fridayButton = dialogView.findViewById(R.id.button_friday);
-        Button saturdayButton = dialogView.findViewById(R.id.button_saturday);
-        Button sundayButton = dialogView.findViewById(R.id.button_sunday);
-        saturdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName(saturDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+saturDay, Toast.LENGTH_SHORT).show();
 
-        });
-        mondayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName(monDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+monDay, Toast.LENGTH_SHORT).show();
-        });
-        tuesdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName(tuesDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+tuesDay, Toast.LENGTH_SHORT).show();
-        });
-        wednesdayButton.setOnClickListener(View -> {
-            mealPlan.setPlanDayName(wednsDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+wednsDay, Toast.LENGTH_SHORT).show();
-
-        });
-        thursdayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName(thursDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+thursDay, Toast.LENGTH_SHORT).show();
-
-        });
-        fridayButton.setOnClickListener(View->{
-            mealPlan.setPlanDayName(friDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+friDay, Toast.LENGTH_SHORT).show();
-
-        });
-        sundayButton.setOnClickListener(View ->{
-            mealPlan.setPlanDayName(sunDay);
-            weekPlanPresenter.insertMealToWeekPlan(mealPlan);
-            Toast.makeText(this, "meal add to "+sunDay, Toast.LENGTH_SHORT).show();
-
-        });
-        builder.show();
+    private void showCalenderDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                String date = (String.format("%02d", day) + "-" + String.format("%02d", (month + 1)) + "-" + year);
+                MealPlan mealPlan = new MealPlan(mealtoInsert);
+                mealPlan.setPlanDayDate(date);
+                weekPlanPresenter.insertMealToWeekPlan(mealPlan);
+            }
+        }, mYear, mMonth, mDay);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 }
 

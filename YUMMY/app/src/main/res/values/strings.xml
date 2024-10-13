@@ -35,4 +35,7 @@
     <string name="filtercategory">Fiter by Category</string>
     <string name="filtercoubrty">Filter by Counrty</string>
     <string name="filteringreident">Filte by ingredient</string>
+    <string name="topaln">Week Plan</string>
+    <string name="tofav">Favourite\n</string>
+    <string name="tofave">favourite</string>
 </resources>

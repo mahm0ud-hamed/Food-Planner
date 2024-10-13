@@ -1,23 +1,32 @@
 package com.example.yummy.ui.home;
 
+import static androidx.core.app.ActivityCompat.recreate;
 import static com.example.yummy.ui.Srearch.SearchFragment.ingredientKey;
 
+
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
+import com.example.yummy.MainActivity;
 import com.example.yummy.Model.Pojos.Category;
 import com.example.yummy.Model.Pojos.Meal;
 import com.example.yummy.Model.Pojos.MealDetails;
@@ -29,7 +38,7 @@ import com.example.yummy.databinding.FragmentHomeBinding;
 import com.example.yummy.ui.Details.MealDetailsActivity;
 import com.example.yummy.ui.Details.onMealClickListener;
 import com.example.yummy.ui.Srearch.MealsListActivity;
-import com.example.yummy.ui.Srearch.SearchFragment;
+import com.example.yummy.utils.Uitlity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +48,8 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
     private FragmentHomeBinding binding;
     ImageView imgRandoMeal;
     ImageView imgCategory ;
-    ImageView logoImag ;
     ImageView imgCounrtyMeal;
+    ImageView logoImag ;
     CardView cardRamdom;
     TextView txtRandName ;
     RemoteDataPresenter remoteDataPresenter;
@@ -60,41 +69,34 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        remoteDataPresenter.getRemoteRandomMeal();
-        remoteDataPresenter.getRemoteCatigoreis();
-        remoteDataPresenter.getRemoteCountryMeals();
-      //  setImageLogo(view);
-        imgRandoMeal = view.findViewById(R.id.rannMealImg);
-       // imgCounrtyMeal = view.findViewById(R.id.imgCounrtyMeal) ;
-        cardRamdom = view.findViewById(R.id.randomCard) ;
-        txtRandName = view.findViewById(R.id.txtRandName) ;
+            remoteDataPresenter.getRemoteRandomMeal();
+            remoteDataPresenter.getRemoteCatigoreis();
+            remoteDataPresenter.getRemoteCountryMeals();
 
-        recyclViewCateg = view.findViewById(R.id.recyclViewCateg) ;
-        recyclerViewCounrty =view.findViewById(R.id.recycCounrtyView);
+            imgRandoMeal = view.findViewById(R.id.rannMealImg);
+            cardRamdom = view.findViewById(R.id.randomCard);
+            txtRandName = view.findViewById(R.id.txtRandName);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
-        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerViewCounrty.setLayoutManager(linearLayoutManager);
+            recyclViewCateg = view.findViewById(R.id.recyclViewCateg);
+            recyclerViewCounrty = view.findViewById(R.id.recycCounrtyView);
 
-        homeCountryAdapter= new HomeCountryAdapter(getContext().getApplicationContext() , recyclerViewCounrty , new ArrayList<Meal>(), this) ;
-        recyclerViewCounrty.setAdapter(homeCountryAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            recyclerViewCounrty.setLayoutManager(linearLayoutManager);
 
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext().getApplicationContext());
-        linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
-        recyclViewCateg.setLayoutManager(linearLayoutManager1);
+            homeCountryAdapter = new HomeCountryAdapter(getContext().getApplicationContext(), recyclerViewCounrty, new ArrayList<Meal>(), this);
+            recyclerViewCounrty.setAdapter(homeCountryAdapter);
 
-        categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(),  recyclViewCateg,  new ArrayList<Category>() ,this) ;
-        recyclViewCateg.setAdapter(categoryAdapter);
+            LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext().getApplicationContext());
+            linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
+            recyclViewCateg.setLayoutManager(linearLayoutManager1);
 
+            categoryAdapter = new CategoryAdapter(getContext().getApplicationContext(), recyclViewCateg, new ArrayList<Category>(), this);
+            recyclViewCateg.setAdapter(categoryAdapter);
 
 
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
     @Override
     public void displayRandoMeal(List<RandomMeal> meal) {
@@ -163,4 +165,6 @@ public class HomeFragment extends Fragment implements IHomeView , onMealClickLis
         HomeFragment.this.startActivity(toMealsListIntent);
 
     }
+
+
 }

@@ -16,8 +16,8 @@ public interface WeekPlanDao {
     @Query("SELECT * FROM weekPlan_table")
     LiveData<List<MealPlan>> getAllWeekPlanMeals() ;
 
-     @Query("SELECT * FROM weekPlan_table WHERE planDayName = :DayName")
-    LiveData<List<MealPlan>> getMealFromPlanByDay(String DayName) ;
+     @Query("SELECT * FROM weekPlan_table WHERE planDayDate = :dayDate")
+    LiveData<List<MealPlan>> getMealFromPlanByDay(String dayDate) ;
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMealToWeekPlan(MealPlan mealPlan) ;

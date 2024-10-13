@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.Model.Pojos.MealPlan;
 
-@Database(entities = {MealDetails.class , MealPlan.class}, version = 3)
+@Database(entities = {MealDetails.class , MealPlan.class}, version = 4)
 
 /*this is abstarct class that you cant create any object from it */
 public abstract class DataBase extends RoomDatabase {
