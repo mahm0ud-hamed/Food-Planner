@@ -59,6 +59,7 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
     private LocalDataPresenter weekPlanPresenter;
     private MealDetails mealtoInsert;
     private Observer<MealDetails> observer;
+    private Observer<MealDetails> observerPlan;
     private DatePickerDialog datePickerDialog;
 
     @Override
@@ -128,21 +129,20 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
             }
             else if ("plan".equals(comeFrom)){
                 /*if internet is not connected will fetch meal from DATA BASE */
-                Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
-                LiveData<MealDetails> liveData = localDataPresenter.get(mealName);
-                observer = new Observer<MealDetails>() {
+                LiveData<MealDetails> liveDataPlan = weekPlanPresenter.getMealFromPlanByName(mealName);
+                observerPlan = new Observer<MealDetails>() {
                     @Override
-                    public void onChanged(MealDetails mealDetails) {
+                    public void onChanged(MealDetails mealPlan) {
                         /*put meal details to List to use same View meal details funtion taht require an array list of meal details*/
                         List<MealDetails> localMeal = new ArrayList<>();
-                        if (mealDetails != null) {
-                            localMeal.add(mealDetails);
+                        if (mealPlan != null) {
+                            localMeal.add(mealPlan);
                             viewMealDetails(localMeal);
                         }
 
                     }
                 };
-                liveData.observe(this, observer);
+                liveDataPlan.observe(this, observerPlan);
             }
         }
 
@@ -177,7 +177,6 @@ public class MealDetailsActivity extends AppCompatActivity implements IMealDetai
         ingredientAdapter = new IngredientAdapter(this, recyclerView, mealDetails);
         recyclerView.setAdapter(ingredientAdapter);
     }
-
 
     /*converting YOUTUBE URL to an embed url to view just video not all the page of the url */
     public void viewInstructionVideo(final String videoURL) {

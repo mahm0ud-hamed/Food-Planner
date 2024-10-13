@@ -33,6 +33,7 @@ public interface IRepository {
     public LiveData<List<MealPlan>> getPlanMealsByDay(WeekPlanDao weekPlanDao , String dayName) ;
     public void deleteMealFromWeekPlan(WeekPlanDao weekPlanDao , MealPlan mealPlan) ;
     public void insetMealToWeekPlan(WeekPlanDao weekPlanDao  ,MealPlan mealPlan) ;
+    public LiveData<MealDetails> getMealFromPlanByName(WeekPlanDao weekPlanDao , String mealName) ;
 
 
 }

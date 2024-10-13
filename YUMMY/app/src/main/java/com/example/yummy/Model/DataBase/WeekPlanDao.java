@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.yummy.Model.Pojos.MealDetails;
 import com.example.yummy.Model.Pojos.MealPlan;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public interface WeekPlanDao {
 
      @Query("SELECT * FROM weekPlan_table WHERE planDayDate = :dayDate")
     LiveData<List<MealPlan>> getMealFromPlanByDay(String dayDate) ;
+
+    @Query("SELECT * FROM weekPlan_table WHERE strMeal = :mealName LIMIT 1")
+    LiveData<MealDetails> getMealByNamefromPlan(String mealName) ;
+
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMealToWeekPlan(MealPlan mealPlan) ;

@@ -11,17 +11,19 @@ import com.example.yummy.Repsitory.Reposiory;
 import java.security.PrivateKey;
 import java.util.List;
 
-public class LocalDataPresenter implements ILocalDataPresenter{
+public class LocalDataPresenter implements ILocalDataPresenter {
     private favouriteDao favouriteDao;
-    private WeekPlanDao weekPlanDao ;
+    private WeekPlanDao weekPlanDao;
 
-    public LocalDataPresenter(favouriteDao favouriteDAO){
+    public LocalDataPresenter(favouriteDao favouriteDAO) {
         this.favouriteDao = favouriteDAO;
 
     }
-    public LocalDataPresenter(WeekPlanDao weekPlanDao){
-        this.weekPlanDao = weekPlanDao ;
+
+    public LocalDataPresenter(WeekPlanDao weekPlanDao) {
+        this.weekPlanDao = weekPlanDao;
     }
+
     @Override
     public LiveData<List<MealDetails>> getAllFavouriteMeals() {
 
@@ -40,7 +42,7 @@ public class LocalDataPresenter implements ILocalDataPresenter{
 
     @Override
     public LiveData<MealDetails> getFavouriteMealByName(String mealName) {
-        return  new Reposiory().getfavouriteMealByname(favouriteDao,mealName) ;
+        return new Reposiory().getfavouriteMealByname(favouriteDao, mealName);
     }
 
     @Override
@@ -51,16 +53,22 @@ public class LocalDataPresenter implements ILocalDataPresenter{
     @Override
     public LiveData<List<MealPlan>> getMealsFromPlanByDay(String dayName) {
 
-        return new Reposiory().getPlanMealsByDay(weekPlanDao , dayName);
+        return new Reposiory().getPlanMealsByDay(weekPlanDao, dayName);
     }
 
     @Override
     public void deleteMealFromWeekPlan(MealPlan mealPlan) {
-        new Reposiory().deleteMealFromWeekPlan(weekPlanDao , mealPlan);
+        new Reposiory().deleteMealFromWeekPlan(weekPlanDao, mealPlan);
     }
 
     @Override
     public void insertMealToWeekPlan(MealPlan mealPlan) {
-       new Reposiory().insetMealToWeekPlan(weekPlanDao , mealPlan);
+        new Reposiory().insetMealToWeekPlan(weekPlanDao, mealPlan);
     }
+
+    @Override
+    public LiveData<MealDetails> getMealFromPlanByName(String mealName) {
+        return new Reposiory().getMealFromPlanByName(weekPlanDao ,mealName);
+    }
+
 }

@@ -17,5 +17,6 @@ public interface ILocalDataPresenter {
     public LiveData<List<MealPlan>> getMealsFromPlanByDay(String dayName) ;
     public void deleteMealFromWeekPlan(MealPlan mealPlan ) ;
     public void insertMealToWeekPlan(MealPlan mealPlan) ;
+    public LiveData<MealDetails> getMealFromPlanByName(String mealName) ;
 
 }

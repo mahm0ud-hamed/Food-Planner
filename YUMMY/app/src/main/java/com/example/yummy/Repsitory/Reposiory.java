@@ -116,4 +116,9 @@ public class Reposiory implements IRepository {
        }).start();
     }
 
+    @Override
+    public LiveData<MealDetails> getMealFromPlanByName(WeekPlanDao weekPlanDao, String mealName) {
+        return weekPlanDao.getMealByNamefromPlan(mealName) ;
+    }
+
 }
